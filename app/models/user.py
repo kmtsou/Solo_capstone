@@ -1,4 +1,5 @@
 from .db import db
+from .community import communityFollows
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -12,6 +13,11 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     community = db.relationship("Community", back_populates="owner", cascade="all, delete")
+    user_follows = db.relationship(
+        "Community",
+        secondary=communityFollows,
+        back_populates='community_follows'
+    )
 
     @property
     def password(self):
@@ -29,4 +35,12 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email
+        }
+
+    def to_dict_rel(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'community': [page.to_dict() for page in self.community]
         }
