@@ -1,5 +1,5 @@
 const GET_COMMUNITIES = 'communities/getCommunities'
-const GET_COMMUNITY_BY_ID = 'communities/getCommunityById'
+// const GET_COMMUNITY_BY_ID = 'communities/getCommunityById'
 const CREATE_COMMUNITY = 'communities/createCommunity'
 const EDIT_COMMUNITY = 'communities/editCommunity'
 const DELETE_COMMUNITY = 'communities/deleteCommunity'
@@ -11,12 +11,12 @@ const getAllCommunities = payload => {
     }
 }
 
-const getCommunityById = payload => {
-    return {
-        type: GET_COMMUNITY_BY_ID,
-        payload
-    }
-}
+// const getCommunityById = payload => {
+//     return {
+//         type: GET_COMMUNITY_BY_ID,
+//         payload
+//     }
+// }
 
 const createCommunity = payload => {
     return {
