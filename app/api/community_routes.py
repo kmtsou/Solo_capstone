@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from ..models import db, Community
 from ..forms import CommunityForm, EditCommunityForm
+from flask_login import current_user
 
 community_routes = Blueprint('communities', __name__, url_prefix='/api/communities')
 
@@ -37,6 +38,7 @@ def create_community():
             description = form.data['description'],
             owner_id = form.data['owner_id']
         )
+        community.community_follows.append(current_user)
         db.session.add(community)
         db.session.commit()
         return {'community': community.to_dict()}
