@@ -19,7 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
 @community_routes.route('/')
 def index():
     all_communities = Community.query.all()
-    return {'communities': {community.to_dict() for community in all_communities}}
+    return {'communities': [community.to_dict() for community in all_communities]}
 
 # get community by id
 @community_routes.route('/<int:id>')
@@ -28,7 +28,7 @@ def single_community(id):
     return community.to_dict()
 
 # create a community
-@community_routes.route('/new', methods=["POST"])
+@community_routes.route('/', methods=["POST"])
 def create_community():
     form = CommunityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -45,7 +45,7 @@ def create_community():
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # edit a community
-@community_routes.route('/<int:id>/edit', methods=['PUT'])
+@community_routes.route('/<int:id>', methods=['PUT'])
 def edit_community(id):
     form = EditCommunityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -58,7 +58,7 @@ def edit_community(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # delete a community
-@community_routes.route('/<int:id>/delete', methods=['DELETE'])
+@community_routes.route('/<int:id>', methods=['DELETE'])
 def delete_community(id):
     community = Community.query.get(id)
     if (community):
