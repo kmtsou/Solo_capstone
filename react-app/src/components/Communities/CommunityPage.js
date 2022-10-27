@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
+import './CommunityPage.css'
 
 function CommunityPage() {
     const user = useSelector((state) => state.session.user);

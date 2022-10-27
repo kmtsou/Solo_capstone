@@ -1,8 +1,9 @@
-import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loadCommunities } from "../../store/community";
 import CommunityIndexCard from "./CommunityIndexCard";
+import './CommunityIndex.css'
 
 function CommunityIndex() {
     const user = useSelector(state => state.session.user)
@@ -23,7 +24,7 @@ function CommunityIndex() {
             </div>
             <div className="community-index-list">
                 {communitiesArr.map((community, index) => (
-                    <CommunityIndexCard community={community} index={index} key={`community ${community.id}`}/>
+                    <CommunityIndexCard community={community} index={index} user={user} key={`community ${community.id}`}/>
                 ))}
 
             </div>

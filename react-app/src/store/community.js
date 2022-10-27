@@ -44,7 +44,7 @@ export const loadCommunities = () => async (dispatch) => {
     const responce = await fetch('/api/communities/')
     if (responce.ok) {
         const data = await responce.json();
-        dispatch(getAllCommunities(data))
+        dispatch(getAllCommunities(data.communities))
     }
 }
 
@@ -57,8 +57,8 @@ export const createCommunityThunk = (communityData) => async (dispatch) => {
 
     if (responce.ok) {
         const data = await responce.json();
-        dispatch(createCommunity(data));
-        return data;
+        dispatch(createCommunity(data.community));
+        return data.community;
     }
 }
 

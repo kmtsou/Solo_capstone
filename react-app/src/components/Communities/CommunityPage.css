@@ -1,0 +1,12 @@
+.community-page-content {
+    display: flex;
+    justify-content: center;
+}
+
+.community-page-posts {
+    margin-right: 15px;
+}
+
+.community-page-sidebar {
+    margin-left: 15px;
+}

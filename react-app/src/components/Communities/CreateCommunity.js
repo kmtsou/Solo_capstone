@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createCommunityThunk } from "../../store/community";
+import './CreateCommunity.css'
 
 function CreateCommunityForm() {
     const dispatch = useDispatch();
