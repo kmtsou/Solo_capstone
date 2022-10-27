@@ -36,7 +36,8 @@
 
 .signup-submit-button {
     cursor: pointer;
-    background-color: black;
+    border: none;
+    background-color: #d93a00;
     color: white;
     width: 90%;
     height: 48px;
@@ -44,6 +45,11 @@
     margin-top: 10px;
     font-size: 16px;
 }
+
+.signup-submit-button:hover {
+    background-color: #dc4a14;
+}
+
 
 .signup-form-input {
     padding-top: 9px;

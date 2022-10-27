@@ -84,6 +84,7 @@ export const deleteCommunityThunk = (communityId) => async (dispatch) => {
     if (responce.ok) {
         const data = await responce.json();
         dispatch(deleteCommunity(communityId))
+        return data
     }
 }
 

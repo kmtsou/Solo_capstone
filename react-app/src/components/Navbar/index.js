@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import SignUpFormModal from './SignupModal';
 import LoginFormModal from './LoginModal';
+import ProfileButton from './Profilebutton';
+import './Navbar.css'
 
-function Navbar({ loaded }) {
+function Navbar() {
     const sessionUser = useSelector(state => state.session.user);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -12,26 +14,26 @@ function Navbar({ loaded }) {
 
     return (
         <div className='navbar'>
-            <div className='navbar-left'>
+            <div className='nav-left'>
                 <NavLink exact to='/' className='home-link'>
                     <div className='logo-div'>
                         logo goes here
                     </div>
                 </NavLink>
             </div>
-            <div className='navbar-right'>
+            <div className='nav-right'>
                 {!sessionUser && (
                     <div className='login-signup-container'>
-                        <div onClick={() => setShowLoginModal(true)} className='login-signup-button'>
-                            <p className='login-signup-text'>Log In</p>
+                        <div onClick={() => setShowSignUpModal(true)} className='signup-button'>
+                            <div className='signup-text'>Sign Up</div>
                         </div>
-                        <div onClick={() => setShowSignUpModal(true)} className='login-signup-button'>
-                            <p className='login-signup-text'>Sign Up</p>
+                        <div onClick={() => setShowLoginModal(true)} className='login-button'>
+                            <div className='login-text'>Log In</div>
                         </div>
                     </div>
                 )}
                 {sessionUser && (
-                    <div>profilebutton</div>
+                    <ProfileButton sessionUser={sessionUser}/>
                 )}
             </div>
             <LoginFormModal showLoginModal={showLoginModal} setShowLoginModal={setShowLoginModal}/>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
+import './Profilebutton.css'
 
 function ProfileButton({ sessionUser }) {
     const dispatch = useDispatch();
