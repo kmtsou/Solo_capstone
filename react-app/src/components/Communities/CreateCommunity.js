@@ -18,8 +18,11 @@ function CreateCommunityForm() {
         if (name.length < 2) {
             errors.push('Please provide a name with more than 1 character')
         }
+        if (description.length < 20) {
+            errors.push('Please provide a description with at least 20 characters')
+        }
         setValidationErrors(errors);
-    }, [name])
+    }, [name, description])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +42,7 @@ function CreateCommunityForm() {
         // }
 
         if (createdCommunity) {
-            history.push(`/communities/${createdCommunity.id}`)
+            history.push(`/communities/${createdCommunity.id}/${createdCommunity.name}`)
         }
     }
 
@@ -57,8 +60,8 @@ function CreateCommunityForm() {
                         </ul>
                     </div>
                 )}
-                <div>
-                    <label>
+                <div className='create-community-line'>
+                    <label className='create-community-label'>
                         name
                     </label>
                     <input
@@ -70,8 +73,8 @@ function CreateCommunityForm() {
                         className='create-community-input'
                     />
                 </div>
-                <div>
-                    <label>
+                <div className='create-community-line'>
+                    <label className='create-community-label'>
                         description
                     </label>
                     <textarea

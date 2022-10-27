@@ -62,8 +62,8 @@ export const createCommunityThunk = (communityData) => async (dispatch) => {
     }
 }
 
-export const editCommunityThunk = (communityData) => async (dispatch) => {
-    const responce = await fetch(`/api/communities/${communityData.id}`, {
+export const editCommunityThunk = (communityData, communityId) => async (dispatch) => {
+    const responce = await fetch(`/api/communities/${communityId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(communityData)

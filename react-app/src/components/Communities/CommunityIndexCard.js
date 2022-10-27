@@ -15,7 +15,7 @@ function CommunityIndexCard({ community, index, user }) {
         <div className='community-card'>
             <div className="community-card-left">
                 <div>
-                    <NavLink to={`/${community.name}`} className='community-card-link'>
+                    <NavLink to={`/${community.id}/${community.name}`} className='community-card-link'>
                         {community.name}
                     </NavLink>
                 </div>

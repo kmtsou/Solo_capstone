@@ -12,6 +12,7 @@ import HomePage from './components/Communities/HomePage';
 import CommunityPage from './components/Communities/CommunityPage';
 import CommunityIndex from './components/Communities/CommunityIndex';
 import CreateCommunityForm from './components/Communities/CreateCommunity';
+import EditCommunityForm from './components/Communities/EditCommunity';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,14 +48,17 @@ function App() {
         <Route path='/' exact={true}>
           <HomePage />
         </Route>
+        <ProtectedRoute path='/communities/new' exact={true}>
+          <CreateCommunityForm />
+        </ProtectedRoute>
         <Route path='/communities' exact={true}>
           <CommunityIndex />
         </Route>
-        <Route path='/:communityName' exact={true}>
+        <ProtectedRoute path='/:communityId/:communityName/edit' exact={true}>
+          <EditCommunityForm />
+        </ProtectedRoute>
+        <Route path='/:communityId/:communityName' exact={true}>
           <CommunityPage />
-        </Route>
-        <Route path='/communities/new' exact={true}>
-          <CreateCommunityForm />
         </Route>
       </Switch>
     </BrowserRouter>

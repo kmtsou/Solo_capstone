@@ -10,3 +10,8 @@
 .main-page-sidebar {
     margin-left: 15px;
 }
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+}

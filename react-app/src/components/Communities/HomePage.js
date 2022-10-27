@@ -28,6 +28,11 @@ function HomePage() {
                     <NavLink to='/communities'>
                         Communities
                     </NavLink>
+                    {user && (
+                        <NavLink to='/communities/new'>
+                            Create a Community
+                        </NavLink>
+                    )}
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@ def create_community():
         community = Community(
             name = form.data['name'],
             description = form.data['description'],
-            owner_id = form.data['owner_id']
+            owner_id = current_user.id
         )
         community.community_follows.append(current_user)
         db.session.add(community)
