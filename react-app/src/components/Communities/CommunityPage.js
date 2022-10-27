@@ -13,7 +13,19 @@ function CommunityPage() {
     }, [dispatch])
 
     return (
-        <div></div>
+        <div className="community-page-content">
+            <div className="community-page-posts">
+                post list
+            </div>
+            <div className="community-page-sidebar">
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
     )
 }
 
