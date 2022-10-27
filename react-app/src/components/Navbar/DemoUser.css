@@ -1,0 +1,27 @@
+.demo-user-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 16px;
+}
+
+.demo-user-button {
+    cursor: pointer;
+    background-color: #d93a00;
+    border: none;
+    color: white;
+    width: 90%;
+    height: 40px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: unset;
+    text-transform: unset;
+}
+
+.demo-user-button:hover {
+    background-color: #dc4a14;
+}

@@ -1,0 +1,102 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 4%;
+    font-family: "Montserrat", sans-serif;
+    height: 64px;
+    /* max-width: 1400px; */
+}
+
+li,
+a,
+button {
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+.login-signup-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.login-button {
+    text-decoration: none;
+    background-color: #0079D3;
+    color: white;
+    border-radius: 9999px;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+    width: 120px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 16px;
+    /* transition: all 0.3s ease-in 0s; */
+}
+
+.login-button:hover {
+    background-color: #006cbd;
+}
+
+.signup-button {
+    text-decoration: none;
+    background-color: white;
+    border: 1px #0079D3 solid;
+    color: #0079D3;
+    border-radius: 9999px;
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+    width: 120px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    line-height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* transition: all 0.3s ease-in 0s; */
+}
+
+.signup-button:hover {
+    background-color: #f2f8fc;
+}
+
+.logo-div {
+    height: 100%;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    min-width: 168px;
+    justify-content: center;
+}
+
+.home-link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+/* .searchbar-container {
+    width: 50%;
+    position: relative;
+} */
+
+/* .logo {
+    height: 33px;
+} */
