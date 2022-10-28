@@ -3,8 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 8px 4%;
-    font-family: "Montserrat", sans-serif;
+    /* margin: 8px 4%; */
     height: 64px;
     background-color: white;
     /* max-width: 1400px; */
@@ -14,7 +13,6 @@ li,
 a,
 button {
     text-decoration: none;
-    font-family: "Montserrat", sans-serif;
 }
 
 .login-signup-container {
@@ -33,7 +31,6 @@ button {
     width: 120px;
     font-weight: bold;
     font-size: 14px;
-    font-family: Arial, sans-serif;
     line-height: 17px;
     display: flex;
     justify-content: center;
@@ -59,7 +56,6 @@ button {
     width: 120px;
     font-weight: bold;
     font-size: 14px;
-    font-family: Arial, sans-serif;
     line-height: 17px;
     display: flex;
     justify-content: center;
@@ -79,12 +75,14 @@ button {
 .nav-left {
     display: flex;
     align-items: center;
+    margin-left: 20px;
 }
 
 .nav-right {
     display: flex;
     min-width: 168px;
     justify-content: center;
+    margin-right: 20px;
 }
 
 .home-link {
