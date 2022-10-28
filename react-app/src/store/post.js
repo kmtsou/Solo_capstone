@@ -47,8 +47,88 @@ const deletePost = (id) => {
     }
 }
 
-const postReducer = (state = {}, action) => {
+//thunks ---------------------------------------------------
 
+export const getAllPostsThunk = () => async dispatch => {
+    const responce = await fetch('/api/posts/')
+    if (responce.ok) {
+        const data = await responce.json();
+        dispatch(getAllPosts(data.posts))
+    }
+}
+
+export const getCommunityPostsThunk = (communityId) = async dispatch => {
+    const responce = await fetch(`/api/${communityId}/posts`)
+    if (responce.ok) {
+        const data = await responce.json();
+        dispatch(getCommunityPosts(data.posts))
+    }
+}
+
+export const createPostThunk = (postData, communityId) => async dispatch => {
+    const responce = await fetch(`/api/${communityId}/posts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postData)
+    })
+    if (responce.ok) {
+        const data = await responce.json();
+        dispatch(createPost(postData))
+        return data
+    }
+}
+
+export const editPostThunk = (postData, postId) => async dispatch => {
+    const responce = await fetch(`/api/posts/${postId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(postData)
+    });
+    if (responce.ok) {
+        const data = await responce.json();
+        dispatch(editPost(data))
+        return data
+    }
+}
+
+export const deletePostThunk = (id) => async dispatch => {
+    const responce = await fetch(`/api/posts/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+    })
+    if (responce.ok) {
+        const data = await responce.json();
+        dispatch(deletePost(id))
+        return data;
+    }
+}
+
+
+const postReducer = (state = {}, action) => {
+    switch (action.type) {
+        case GET_ALL_POSTS:
+            const allPosts = {};
+            action.payload.forEach(post => {
+                allPosts[post.id] = post
+            })
+            return allPosts;
+        case GET_COMMUNITY_POSTS:
+            const communityPosts = {};
+            action.payload.forEach(post => {
+                communityPosts[post.id] = post
+            })
+            return communityPosts
+        case CREATE_POST:
+            return { ...state, [action.payload.id]: action.payload };
+        case EDIT_POST:
+            return { ...state, [action.payload.id]: action.payload };
+        case DELETE_POST:
+            const removedState = {...state}
+            delete removedState[action.id]
+            return removedState;
+        default:
+            return state;
+    }
 }
 
 export default postReducer;
