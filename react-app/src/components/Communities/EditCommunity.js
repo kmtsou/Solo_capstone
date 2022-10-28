@@ -82,8 +82,8 @@ function EditCommunityForm() {
                 </div>
             </form>
             <div className="other-buttons-container">
-                <button onClick={handleDelete}>Delete</button>
-                <button onClick={()=>history.push(`/${communityId}/${communityName}`)}>Cancel</button>
+                <button onClick={handleDelete} className='delete-community-button'>Delete</button>
+                <button onClick={()=>history.push(`/${communityId}/${communityName}`)} className='cancel-button'>Cancel</button>
             </div>
         </div>
     )

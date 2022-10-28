@@ -25,3 +25,11 @@
     overflow: visible;
     margin-top: 16px;
 }
+
+.main-page-index-link {
+    text-decoration: none;
+}
+
+.main-page-create-link {
+    text-decoration: none;
+}

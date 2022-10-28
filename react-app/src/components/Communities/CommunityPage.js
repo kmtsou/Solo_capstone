@@ -31,9 +31,11 @@ function CommunityPage() {
                         <div>{community.description}</div>
                     </div>
                     {user && user.id === community.owner_id && (
-                    <div>
-                        <NavLink to={`/${communityId}/${community.name}/edit`}>Edit Community Page</NavLink>
-                    </div>
+                        <div>
+                            <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
+                                Edit Community Page
+                            </NavLink>
+                        </div>
                     )}
                 </div>
                 <div className="community-rules-card">
