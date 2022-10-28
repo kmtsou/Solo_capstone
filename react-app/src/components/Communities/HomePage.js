@@ -25,11 +25,11 @@ function HomePage() {
                 <div className="home-card">
                     <h2>Home</h2>
                     <div>Welcome to the app! Hope you enjoy your stay.</div>
-                    <NavLink to='/communities'>
+                    <NavLink to='/communities' className={'main-page-index-link'}>
                         Communities
                     </NavLink>
                     {user && (
-                        <NavLink to='/communities/new'>
+                        <NavLink to='/communities/new' className={'main-page-create-link'}>
                             Create a Community
                         </NavLink>
                     )}
