@@ -44,7 +44,7 @@ export const loadCommunities = () => async (dispatch) => {
     const responce = await fetch('/api/communities/')
     if (responce.ok) {
         const data = await responce.json();
-        dispatch(getAllCommunities(data))
+        dispatch(getAllCommunities(data.communities))
     }
 }
 
@@ -57,13 +57,13 @@ export const createCommunityThunk = (communityData) => async (dispatch) => {
 
     if (responce.ok) {
         const data = await responce.json();
-        dispatch(createCommunity(data));
-        return data;
+        dispatch(createCommunity(data.community));
+        return data.community;
     }
 }
 
-export const editCommunityThunk = (communityData) => async (dispatch) => {
-    const responce = await fetch(`/api/communities/${communityData.id}`, {
+export const editCommunityThunk = (communityData, communityId) => async (dispatch) => {
+    const responce = await fetch(`/api/communities/${communityId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(communityData)
