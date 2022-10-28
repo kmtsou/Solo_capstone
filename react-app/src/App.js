@@ -8,13 +8,18 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import HomePage from './components/Communities/HomePage';
+import CommunityPage from './components/Communities/CommunityPage';
+import CommunityIndex from './components/Communities/CommunityIndex';
+import CreateCommunityForm from './components/Communities/CreateCommunity';
+import EditCommunityForm from './components/Communities/EditCommunity';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -28,24 +33,33 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/' exact={true}>
-          <h1>My Home Page</h1>
+          <HomePage />
         </Route>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/communities/new' exact={true}>
+          <CreateCommunityForm />
         </ProtectedRoute>
+        <Route path='/communities' exact={true}>
+          <CommunityIndex />
+        </Route>
+        <ProtectedRoute path='/:communityId/:communityName/edit' exact={true}>
+          <EditCommunityForm />
+        </ProtectedRoute>
+        <Route path='/:communityId/:communityName' exact={true}>
+          <CommunityPage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
