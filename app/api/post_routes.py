@@ -19,7 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
 @post_routes.route('/')
 def all_posts():
     allPosts = Post.query.all()
-    return {'posts': [post.to_dict() for post in allPosts]}
+    return {'posts': [post.to_dict_rel() for post in allPosts]}
 
 # get post by id
 @post_routes.route('/<int:id>')

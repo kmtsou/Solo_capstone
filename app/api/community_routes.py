@@ -71,7 +71,7 @@ def delete_community(id):
 @community_routes.route('/<int:id>/posts')
 def community_posts(id):
     communityPosts = Post.query.filter(id == Post.community_id).all()
-    return {'posts': [post.to_dict() for post in community_posts]}
+    return {'posts': [post.to_dict() for post in communityPosts]}
 
 # create a post in community
 @community_routes.route('/<int:id>/posts', methods=["POST"])
@@ -82,7 +82,7 @@ def create_post(id):
         post = Post(
             title = form.data['title'],
             content = form.data['content'],
-            imageContent = form.data['imageContent'],
+            # imageContent = form.data['imageContent'],
             community_id = id,
             poster_id = current_user.id
         )
