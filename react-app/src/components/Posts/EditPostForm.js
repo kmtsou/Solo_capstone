@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './EditPostForm.css'
 import { deletePostThunk, editPostThunk } from "../../store/post";
 
 function EditPost() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { id } = useParams()
+    const { communityId, communityName, postId } = useParams();
+    const post = useSelector(state => state.posts[postId]);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
+
+    useEffect(() => {
+        if (post && post.title && post.content) {
+            setTitle(post.title)
+            setContent(post.content)
+        }
+    }, [post])
 
     useEffect(() => {
         let valErrors = [];
@@ -35,14 +43,14 @@ function EditPost() {
         }
         let edittedPost = await dispatch(editPostThunk(payload, /*postId*/))
         if (edittedPost) {
-            //post page redirect
+            history.push(`/${communityId}/${communityName}/comments/${postId}`)
         }
     }
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        await dispatch(deletePostThunk(id))
-        history.push('/')
+        await dispatch(deletePostThunk(postId))
+        history.push(`/${communityId}/${communityName}`)
     }
 
     return (
@@ -82,6 +90,10 @@ function EditPost() {
                     <button className="edit-post-submit-button" type="submit"></button>
                 </div>
             </form>
+            <div>
+                <button onClick={handleDelete} className='delete-post-button'>Delete</button>
+                <button onClick={()=>history.push(`/${communityId}/${communityName}/comments/${postId}`)}>Cancel</button>
+            </div>
         </div>
     )
 }

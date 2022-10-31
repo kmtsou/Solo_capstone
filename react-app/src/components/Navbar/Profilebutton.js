@@ -34,7 +34,8 @@ function ProfileButton({ sessionUser }) {
             <div className='profile-button-container'>
                 <button onClick={openMenu} className='profile-dropdown'>
                     <div className='profile-icon-div'>
-                        <i className="fas fa-user-circle fa-2x" />
+                        <i className="far fa-user-circle fa-2x" />
+                        <i className='fas fa-angle-down'/>
                     </div>
                 </button>
             </div>

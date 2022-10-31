@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import './CreatePostForm.css'
 import { createPostThunk } from "../../store/post";
@@ -7,6 +7,7 @@ import { createPostThunk } from "../../store/post";
 function CreatePost() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { communityId, communityName } = useParams();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
@@ -32,9 +33,9 @@ function CreatePost() {
             title,
             content
         }
-        let createdPost = await dispatch(createPostThunk(payload, /*communityId*/))
+        let createdPost = await dispatch(createPostThunk(payload, communityId))
         if (createdPost) {
-            //post page redirect
+            history.push(`/${communityId}/${communityName}`)
         }
     }
 
@@ -72,9 +73,12 @@ function CreatePost() {
                     </textarea>
                 </div>
                 <div className="create-post-button-container">
-                    <button className="create-post-submit-button" type="submit"></button>
+                    <button className="create-post-submit-button" type="submit">Submit</button>
                 </div>
             </form>
+            <div className="cancel-post-container">
+                <button onClick={() => history.push(`/${communityId}/${communityName}`)} className='cancel-button'>Cancel</button>
+            </div>
         </div>
     )
 }

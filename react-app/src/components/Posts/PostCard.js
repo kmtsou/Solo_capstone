@@ -21,7 +21,7 @@ function PostCard({ post }) {
                     {post.content}
                 </div>
                 <div className='post-card-comment-counter'>
-                    <i className='fa fa-comment'/>
+                    <i className='far fa-comment'/>
                     <div>Comments</div>
                 </div>
             </div>

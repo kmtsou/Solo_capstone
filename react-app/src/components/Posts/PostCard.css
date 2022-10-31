@@ -1,0 +1,13 @@
+.post-card {
+    margin-top: 16px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.post-card-header {
+    display: flex;
+}
+
+.post-card-comment-counter {
+    display: flex;
+}

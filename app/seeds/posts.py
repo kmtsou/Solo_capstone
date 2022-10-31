@@ -14,7 +14,7 @@ def seed_post():
         poster_id=1
     )
     seedPost3 = Post(
-        title='Test seed',
+        title='Test seed2',
         content='This is a test post. Please post test comments on this post.',
         community_id=2,
         poster_id=1
@@ -39,6 +39,11 @@ def seed_post():
     )
 
     db.session.add(seedPost1)
+    db.session.add(seedPost2)
+    db.session.add(seedPost3)
+    db.session.add(seedPost4)
+    db.session.add(seedPost5)
+    db.session.add(seedPost6)
     db.session.commit()
 
 def undo_post():

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
+import CommunityPostList from "../Posts/CommunityPostList";
 import './CommunityPage.css'
 
 function CommunityPage() {
@@ -20,7 +21,7 @@ function CommunityPage() {
     return (
         <div className="community-page-content">
             <div className="community-page-posts">
-                post list
+                <CommunityPostList />
             </div>
             <div className="community-page-sidebar">
                 <div className="community-about-card">
@@ -34,6 +35,13 @@ function CommunityPage() {
                         <div>
                             <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
                                 Edit Community Page
+                            </NavLink>
+                        </div>
+                    )}
+                    {user && (
+                        <div>
+                            <NavLink className='create-post-link' to={`/${communityId}/${community.name}/post`}>
+                                Create a Post
                             </NavLink>
                         </div>
                     )}
