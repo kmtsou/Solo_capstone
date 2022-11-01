@@ -10,6 +10,7 @@
 
 .community-page-sidebar {
     margin-left: 15px;
+    width: 312px;
 }
 
 .community-about-card {
@@ -19,10 +20,32 @@
     align-items: center;
     background-color: white;
     border: 1px #ccc solid;
+    border-top: 1px #0079D3 solid;
     border-radius: 4px;
     word-wrap: break-word;
     overflow: visible;
     margin-top: 16px;
+}
+
+.community-about-header {
+    width: 100%;
+    background-color: #0079D3;
+    border-left: 1px solid #0079D3;
+    /* border-top: 1px solid #0079D3; */
+    border-right: 1px solid #0079D3;
+    border-radius: 4px 4px 0 0;
+}
+
+.community-about-header-text {
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: white;
+}
+
+.community-about-description {
+    padding: 12px;
 }
 
 .community-rules-card {
@@ -32,8 +55,30 @@
     align-items: center;
     background-color: white;
     border: 1px #ccc solid;
+    border-top: 1px #0079D3 solid;
     border-radius: 4px;
     word-wrap: break-word;
     overflow: visible;
     margin-top: 16px;
+}
+
+.community-rules-header {
+    width: 100%;
+    background-color: #0079D3;
+    border-left: 1px solid #0079D3;
+    border-right: 1px solid #0079D3;
+    /* border-top: 1px solid #0079D3; */
+    border-radius: 4px 4px 0 0;
+}
+
+.community-rules-header-text {
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: white;
+}
+
+.community-rules-list {
+    padding: 12px;
 }

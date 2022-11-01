@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     community = db.relationship("Community", back_populates="owner", cascade="all, delete")
+    posts = db.relationship("Post", back_populates='poster', cascade="all, delete")
     user_follows = db.relationship(
         "Community",
         secondary=communityFollows,
