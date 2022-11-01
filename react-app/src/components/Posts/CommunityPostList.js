@@ -22,7 +22,7 @@ function CommunityPostList() {
     return (
         <>
             {postsArr.map(post => (
-                <PostCard post={post} />
+                <PostCard post={post} key={`post ${post.id}`}/>
             ))}
         </>
     )
