@@ -62,7 +62,7 @@ function CreateCommunityForm() {
                 )}
                 <div className='create-community-line'>
                     <label className='create-community-label'>
-                        name
+                        Name
                     </label>
                     <input
                         type="text"
@@ -75,7 +75,7 @@ function CreateCommunityForm() {
                 </div>
                 <div className='create-community-line'>
                     <label className='create-community-label'>
-                        description
+                        Description
                     </label>
                     <textarea
                         value={description}

@@ -13,6 +13,9 @@ import CommunityPage from './components/Communities/CommunityPage';
 import CommunityIndex from './components/Communities/CommunityIndex';
 import CreateCommunityForm from './components/Communities/CreateCommunity';
 import EditCommunityForm from './components/Communities/EditCommunity';
+import CreatePost from './components/Posts/CreatePostForm';
+import PostPage from './components/Posts/PostPage';
+import EditPost from './components/Posts/EditPostForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +60,15 @@ function App() {
         <ProtectedRoute path='/:communityId/:communityName/edit' exact={true}>
           <EditCommunityForm />
         </ProtectedRoute>
+        <ProtectedRoute path='/:communityId/:communityName/post' exact={true}>
+          <CreatePost />
+        </ProtectedRoute>
+        <ProtectedRoute path='/:communityId/:communityName/post/:postId/edit' exact={true}>
+          <EditPost />
+        </ProtectedRoute>
+        <Route path='/:communityId/:communityName/comments/:postId' exact={true}>
+          <PostPage />
+        </Route>
         <Route path='/:communityId/:communityName' exact={true}>
           <CommunityPage />
         </Route>

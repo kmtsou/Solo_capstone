@@ -15,6 +15,7 @@ class Community(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     owner = db.relationship("User", back_populates="community")
+    posts = db.relationship("Post", back_populates='community', cascade="all, delete")
     community_follows = db.relationship(
         "User",
         secondary=communityFollows,
@@ -35,5 +36,6 @@ class Community(db.Model):
             'name': self.name,
             'description': self.description,
             'owner_id': self.owner_id,
-            'owner': self.owner.to_dict()
+            'owner': self.owner.to_dict(),
+            'posts': [p.to_dict() for p in self.posts]
         }

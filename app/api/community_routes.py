@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from ..models import db, Community
-from ..forms import CommunityForm, EditCommunityForm
+from ..models import db, Community, Post
+from ..forms import CommunityForm, EditCommunityForm, PostForm
 from flask_login import current_user
 
 community_routes = Blueprint('communities', __name__, url_prefix='/api/communities')
@@ -66,3 +66,27 @@ def delete_community(id):
         db.session.commit()
         return {'message': 'Community has been removed'}
     return {'message': 'This community does not exist'}
+
+# get community posts
+@community_routes.route('/<int:id>/posts')
+def community_posts(id):
+    communityPosts = Post.query.filter(id == Post.community_id).all()
+    return {'posts': [post.to_dict_rel() for post in communityPosts]}
+
+# create a post in community
+@community_routes.route('/<int:id>/posts', methods=["POST"])
+def create_post(id):
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        post = Post(
+            title = form.data['title'],
+            content = form.data['content'],
+            # imageContent = form.data['imageContent'],
+            community_id = id,
+            poster_id = current_user.id
+        )
+        db.session.add(post)
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}

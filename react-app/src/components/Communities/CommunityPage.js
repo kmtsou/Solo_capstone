@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
+import CommunityPostList from "../Posts/CommunityPostList";
 import './CommunityPage.css'
 
 function CommunityPage() {
@@ -20,31 +21,39 @@ function CommunityPage() {
     return (
         <div className="community-page-content">
             <div className="community-page-posts">
-                post list
+                <CommunityPostList />
             </div>
             <div className="community-page-sidebar">
                 <div className="community-about-card">
                     <div className="community-about-header">
-                        <h2>{community.name}</h2>
+                        <div className="community-about-header-text">About Community</div>
                     </div>
                     <div className="community-about-description">
-                        <div>{community.description}</div>
+                        <div className="community-about-description-text">{community.description}</div>
+
+                        {user && user.id === community.owner_id && (
+                            <div>
+                                <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
+                                    Edit Community Page
+                                </NavLink>
+                            </div>
+                        )}
+                        {user && (
+                            <div>
+                                <NavLink className='create-post-link' to={`/${communityId}/${community.name}/post`}>
+                                    Create a Post
+                                </NavLink>
+                            </div>
+                        )}
                     </div>
-                    {user && user.id === community.owner_id && (
-                        <div>
-                            <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
-                                Edit Community Page
-                            </NavLink>
-                        </div>
-                    )}
                 </div>
                 <div className="community-rules-card">
                     <div className="community-rules-header">
-                        <h4>{community.name} Rules</h4>
+                        <div className="community-rules-header-text">/{community.name} Rules</div>
                     </div>
-                    <div>
-                        <div>1. Be Respectful.</div>
-                        <div>2. Posts should relate to topic.</div>
+                    <div className="community-rules-list">
+                        <div className="community-rules-line">1. Be Respectful.</div>
+                        <div className="community-rules-line">2. Posts should relate to topic.</div>
                     </div>
                 </div>
             </div>
