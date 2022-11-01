@@ -63,7 +63,7 @@ function App() {
         <ProtectedRoute path='/:communityId/:communityName/post' exact={true}>
           <CreatePost />
         </ProtectedRoute>
-        <ProtectedRoute path='/:postId/edit'>
+        <ProtectedRoute path='/:communityId/:communityName/post/:postId/edit' exact={true}>
           <EditPost />
         </ProtectedRoute>
         <Route path='/:communityId/:communityName/comments/:postId' exact={true}>

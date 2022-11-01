@@ -41,7 +41,7 @@ function EditPost() {
             title,
             content
         }
-        let edittedPost = await dispatch(editPostThunk(payload, /*postId*/))
+        let edittedPost = await dispatch(editPostThunk(payload, postId))
         if (edittedPost) {
             history.push(`/${communityId}/${communityName}/comments/${postId}`)
         }
@@ -87,7 +87,7 @@ function EditPost() {
                     </textarea>
                 </div>
                 <div className="edit-post-button-container">
-                    <button className="edit-post-submit-button" type="submit"></button>
+                    <button className="edit-post-submit-button" type="submit">submit</button>
                 </div>
             </form>
             <div>

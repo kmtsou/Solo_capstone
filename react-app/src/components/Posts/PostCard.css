@@ -2,6 +2,15 @@
     margin-top: 16px;
     background-color: white;
     border-radius: 4px;
+    border: 1px #ccc solid;
+    text-decoration: none;
+    color: black;
+    word-wrap: break-word;
+    overflow: visible;
+}
+
+.post-card:hover {
+    border: 1px #898989 solid;
 }
 
 .post-card-header {
