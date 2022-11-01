@@ -88,5 +88,5 @@ def create_post(id):
         )
         db.session.add(post)
         db.session.commit()
-        return post.to_dict()
+        return post.to_dict_rel()
     return {'errors': validation_errors_to_error_messages(form.errors)}

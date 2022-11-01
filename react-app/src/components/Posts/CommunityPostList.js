@@ -15,7 +15,7 @@ function CommunityPostList() {
 
     useEffect(() => {
         dispatch(getCommunityPostsThunk(communityId))
-    }, [dispatch])
+    }, [dispatch, communityId])
 
     if (!posts) return null
 

@@ -1,20 +1,20 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './PostCard.css'
 
 function PostCard({ post }) {
-    const { communityId, communityName } = useParams();
+    // const { communityId, communityName } = useParams();
 
     return (
-        <NavLink to={`/${communityId}/${communityName}/comments/${post.id}`}>
+        <NavLink to={`/${post.community_id}/${post.community.name}/comments/${post.id}`}>
             <div className='post-card'>
-                <div className='post-card-leftside'></div>
+                <div className='post-card-leftside'>
+
+                </div>
                 <div className='post-card-rightside'>
                     <div className='post-card-header'>
-                        <div>{`/${communityName}`}</div>
-                        <div>•</div>
-                        <div>Posted by</div>
-                        <div>{post.poster.username}</div>
-                        <div>{post.created_at}</div>
+                        <div className='post-card-header-community'>{`/${post.community.name}`}</div>
+                        <div className='post-card-header-separator'>•</div>
+                        <div className='post-card-header-text'>Posted by {post.poster.username}, {post.created_at}</div>
                     </div>
                     <div className='post-card-title'>
                         {post.title}

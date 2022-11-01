@@ -17,7 +17,7 @@ function CreatePost() {
     useEffect(() => {
         let valErrors = [];
         if (title.length < 2) {
-            errors.push('Please provide a post title with more than 1 character')
+            valErrors.push('Please provide a post title with more than 1 character')
         }
         setValidationErrors(valErrors);
     }, [title])
