@@ -12,16 +12,16 @@ function CommunityIndexCard({ community, index, user }) {
     // }
 
     return (
-        <div className='community-card'>
-            <div className="community-card-left">
-                <div>
-                    <NavLink to={`/${community.id}/${community.name}`} className='community-card-link'>
-                        {community.name}
-                    </NavLink>
+        <NavLink to={`/${community.id}/${community.name}`} className='community-card-link'>
+            <div className='community-card'>
+                <div className="community-card-left">
+                    <div className="community-card-left-text">
+                        <div className="community-card-left-number">{index + 1}.</div>
+                        <div>/{community.name}</div>
+                    </div>
                 </div>
-            </div>
-            <div className="community-card-right">
-                <div>
+                <div className="community-card-right">
+                    {/* <div>
                     {user && (
                         <button
                             onClick={(e) => e.preventDefault()}
@@ -37,10 +37,11 @@ function CommunityIndexCard({ community, index, user }) {
                         </button>
                     )}
                 </div>
-                {/* <div>{community.community_follows.length}</div> */}
-                <div>follows</div>
+                <div>{community.community_follows.length}</div>
+                <div>follows</div> */}
+                </div>
             </div>
-        </div>
+        </NavLink>
     )
 }
 
