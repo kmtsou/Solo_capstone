@@ -7,14 +7,52 @@
     color: black;
     word-wrap: break-word;
     overflow: visible;
+    /* display: flex; */
 }
 
 .post-card:hover {
     border: 1px #898989 solid;
 }
 
+/* .post-card-leftside {
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    background-color: #d1d1d1;
+} */
+
+.post-card-rightside {
+    padding-left: 40px;
+}
+
 .post-card-header {
     display: flex;
+    padding-top: 8px;
+    margin: 0 8px 8px;
+    font-size: 12px;
+    line-height: 16px;
+    align-items: start;
+}
+
+.post-card-header-community {
+    font-weight: 700;
+    color: black;
+}
+
+.post-card-header-separator {
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.post-card-header-text {
+    color: grey;
+}
+
+.post-card-content {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    overflow: hidden;
+    max-height: 250px;
 }
 
 .post-card-comment-counter {

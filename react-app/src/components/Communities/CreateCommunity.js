@@ -88,6 +88,9 @@ function CreateCommunityForm() {
                     <button type="submit" className="create-community-button">create community</button>
                 </div>
             </form>
+            <div>
+                <button onClick={() => history.push('/')}>cancel</button>
+            </div>
         </div>
     )
 };

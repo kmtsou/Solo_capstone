@@ -10,17 +10,18 @@ function PostList() {
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.posts)
 
-    if (!posts) return null
     const postsArr = Object.values(posts);
 
     useEffect(() => {
         dispatch(getAllPostsThunk())
     }, [dispatch])
 
+    if (!posts) return null
+
     return (
         <>
         {postsArr.map(post => (
-            <PostCard post={post}/>
+            <PostCard post={post} key={`post ${post.id}`}/>
         ))}
         </>
     )

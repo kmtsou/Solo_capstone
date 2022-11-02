@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
+import PostList from "../Posts/PostList";
 import './HomePage.css'
+import SidebarExtraCard from "./SidebarExtraCard";
 
 function HomePage() {
     const user = useSelector((state) => state.session.user);
@@ -16,14 +18,14 @@ function HomePage() {
     return (
         <div className="main-page-content">
             <div className="main-page-posts">
-                post list
+                <PostList />
             </div>
             <div className="main-page-sidebar">
                 <div>
                     list of top communities
                 </div>
                 <div className="home-card">
-                    <h2>Home</h2>
+                    <h3 className="home-card-header">Home</h3>
                     <div>Welcome to the app! Hope you enjoy your stay.</div>
                     <NavLink to='/communities' className={'main-page-index-link'}>
                         Communities
@@ -34,6 +36,7 @@ function HomePage() {
                         </NavLink>
                     )}
                 </div>
+                <SidebarExtraCard />
             </div>
         </div>
     )

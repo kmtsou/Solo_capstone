@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import './EditPostForm.css'
 import { deletePostThunk, editPostThunk } from "../../store/post";
+import SidebarExtraCard from "../Communities/SidebarExtraCard";
 
 function EditPost() {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function EditPost() {
     useEffect(() => {
         let valErrors = [];
         if (title.length < 2) {
-            errors.push('Please provide a post title with more than 1 character')
+            valErrors.push('Please provide a post title with more than 1 character')
         }
         setValidationErrors(valErrors);
     }, [title])
@@ -53,46 +54,81 @@ function EditPost() {
         history.push(`/${communityId}/${communityName}`)
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push(`/${communityId}/${communityName}/comments/${postId}`)
+    }
+
     return (
         <div className="edit-post-container">
-            <form onSubmit={handleSubmit} className='edit-post-form'>
-                {hasSubmitted && validationErrors.length > 0 && (
-                    <div>
-                        The following errors were found:
-                        <ul>
-                            {validationErrors.map((error) => (
-                                <li key={error} className='val-errors'>{error}</li>
-                            ))}
-                            {errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>)}
-                        </ul>
-                    </div>
-                )}
-                <div className="edit-post-line">
-                    <label className="edit-post-label">
-                        Title
-                    </label>
-                    <input className="edit-post-input"
-                        type="text"
-                        value={title}
-                        onChange={(e) => { setTitle(e.target.value) }}>
-                    </input>
-                </div>
-                <div className="edit-post-line">
-                    <label className="edit-post-label">
-
-                    </label>
-                    <textarea className="edit-post-textarea"
-                        value={content}
-                        onChange={(e) => { setContent(e.target.value) }}>
-                    </textarea>
-                </div>
-                <div className="edit-post-button-container">
-                    <button className="edit-post-submit-button" type="submit">submit</button>
-                </div>
-            </form>
             <div>
-                <button onClick={handleDelete} className='delete-post-button'>Delete</button>
-                <button onClick={()=>history.push(`/${communityId}/${communityName}/comments/${postId}`)}>Cancel</button>
+                <div className="edit-post-header">
+                    <div className="edit-post-header-text">Editing your post /{communityName}</div>
+                </div>
+                <div className="edit-post-form-container">
+                    <form onSubmit={handleSubmit} className='edit-post-form'>
+                        {hasSubmitted && validationErrors.length > 0 && (
+                            <div>
+                                The following errors were found:
+                                <ul>
+                                    {validationErrors.map((error) => (
+                                        <li key={error} className='val-errors'>{error}</li>
+                                    ))}
+                                    {errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>)}
+                                </ul>
+                            </div>
+                        )}
+                        <div className="edit-post-line">
+                            <label className="edit-post-label">
+                                Title
+                            </label>
+                            <input className="edit-post-input"
+                                type="text"
+                                value={title}
+                                onChange={(e) => { setTitle(e.target.value) }}>
+                            </input>
+                        </div>
+                        <div className="edit-post-line">
+                            <label className="edit-post-label">
+                                Text
+                            </label>
+                            <textarea className="edit-post-textarea"
+                                value={content}
+                                onChange={(e) => { setContent(e.target.value) }}>
+                            </textarea>
+                        </div>
+                        <div className="edit-post-button-container">
+                            <button onClick={handleDelete} className='delete-post-button'>Delete</button>
+                            <div>
+                                <button onClick={handleCancel} className='cancel-button'>Cancel</button>
+                                <button className="edit-post-submit-button" type="submit">submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div className="edit-post-sidebar">
+                <div className="edit-post-rules-card">
+                    <div className="edit-post-rules-header">
+                        Posting on linkit:
+                    </div>
+                    <div className="edit-post-rules-line">
+                        1. Remember the human
+                    </div>
+                    <div className="edit-post-rules-line">
+                        2. Behave like you would in real life
+                    </div>
+                    <div className="edit-post-rules-line">
+                        3. Look for the original source of content
+                    </div>
+                    <div className="edit-post-rules-line">
+                        4. Search for duplicates before posting
+                    </div>
+                    <div className="edit-post-rules-line">
+                        5. Read the community's rules
+                    </div>
+                </div>
+                <SidebarExtraCard />
             </div>
         </div>
     )

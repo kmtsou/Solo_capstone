@@ -15,14 +15,14 @@ function CommunityPostList() {
 
     useEffect(() => {
         dispatch(getCommunityPostsThunk(communityId))
-    }, [dispatch])
+    }, [dispatch, communityId])
 
     if (!posts) return null
 
     return (
         <>
             {postsArr.map(post => (
-                <PostCard post={post} />
+                <PostCard post={post} key={`post ${post.id}`}/>
             ))}
         </>
     )
