@@ -54,6 +54,11 @@ function EditPost() {
         history.push(`/${communityId}/${communityName}`)
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push(`/${communityId}/${communityName}/comments/${postId}`)
+    }
+
     return (
         <div className="edit-post-container">
             <div>
@@ -93,13 +98,13 @@ function EditPost() {
                             </textarea>
                         </div>
                         <div className="edit-post-button-container">
-                            <button className="edit-post-submit-button" type="submit">submit</button>
+                            <button onClick={handleDelete} className='delete-post-button'>Delete</button>
+                            <div>
+                                <button onClick={handleCancel} className='cancel-button'>Cancel</button>
+                                <button className="edit-post-submit-button" type="submit">submit</button>
+                            </div>
                         </div>
                     </form>
-                    <div>
-                        <button onClick={handleDelete} className='delete-post-button'>Delete</button>
-                        <button onClick={() => history.push(`/${communityId}/${communityName}/comments/${postId}`)}>Cancel</button>
-                    </div>
                 </div>
             </div>
             <div className="edit-post-sidebar">

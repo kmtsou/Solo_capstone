@@ -32,7 +32,7 @@ function SidebarExtraCard() {
                 </div>
             </div>
             <div className='bottom-card-rights-reserved'>
-
+                linkit ©️ 2022. All rights reserved
             </div>
         </div>
     )

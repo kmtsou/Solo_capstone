@@ -84,7 +84,7 @@
 
 .edit-post-button-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 16px;
 }
 
@@ -129,4 +129,19 @@
 .edit-post-header-text {
     font-weight: bold;
     font-size: 22px;
+}
+
+.delete-post-button {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 16px 4px;
+    border-radius: 9999px;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid #d93a00;
+    color: #d93a00;
+}
+
+.delete-post-button:hover {
+    background-color: #ffcdbd;
 }

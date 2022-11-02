@@ -23,9 +23,12 @@ function PostPage() {
             <div className='post-title-div'>{post.title}</div>
             <div className='post-content-div'>{post.content}</div>
             <div className='post-footer-info'>
-                <i className='far fa-edit'/>
-                {user && user.id === post.poster_id &&(
-                <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`}>edit</NavLink>
+
+                {user && user.id === post.poster_id && (
+                    <>
+                        <i className='far fa-edit' />
+                        <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`}>edit</NavLink>
+                    </>
                 )}
             </div>
         </div>

@@ -29,7 +29,7 @@
 }
 
 .home-card-header {
-    margin: 6px 0 0 0;
+    margin: 12px 0 12px 0;
 }
 
 .main-page-index-link {
@@ -38,7 +38,7 @@
     background-color: #0079D3;
     padding: 4px 16px;
     border-radius: 999px;
-    margin-top: 4px;
+    margin-top: 8px;
     margin-bottom: 8px;
     width: 75%;
     text-align: center;

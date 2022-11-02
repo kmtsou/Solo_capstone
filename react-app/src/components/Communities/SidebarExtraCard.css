@@ -27,3 +27,9 @@
 .bottom-card-technologies-line {
     margin-bottom: 4px;
 }
+
+.bottom-card-rights-reserved {
+    font-size: 12px;
+    padding-left: 8px;
+    margin-top: 12px;
+}
