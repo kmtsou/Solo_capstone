@@ -67,14 +67,14 @@ export const getCommunityPostsThunk = (communityId) => async dispatch => {
 }
 
 export const createPostThunk = (postData, communityId) => async dispatch => {
-    const responce = await fetch(`/api/${communityId}/posts`, {
+    const responce = await fetch(`/api/communities/${communityId}/posts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postData)
     })
     if (responce.ok) {
         const data = await responce.json();
-        dispatch(createPost(postData))
+        dispatch(createPost(data))
         return data
     }
 }

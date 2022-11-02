@@ -4,6 +4,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
 import CommunityPostList from "../Posts/CommunityPostList";
 import './CommunityPage.css'
+import SidebarExtraCard from "./SidebarExtraCard";
 
 function CommunityPage() {
     const { communityId } = useParams();
@@ -29,22 +30,26 @@ function CommunityPage() {
                         <div className="community-about-header-text">About Community</div>
                     </div>
                     <div className="community-about-description">
-                        <div className="community-about-description-text">{community.description}</div>
+                        <div className="community-about-description-text">
+                            {community.description}
+                        </div>
+
+                        {user && (
+
+                            <NavLink className='create-post-link' to={`/${communityId}/${community.name}/post`}>
+                                Create a Post
+                            </NavLink>
+
+                        )}
 
                         {user && user.id === community.owner_id && (
-                            <div>
-                                <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
-                                    Edit Community Page
-                                </NavLink>
-                            </div>
+
+                            <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
+                                Edit Community Page
+                            </NavLink>
+
                         )}
-                        {user && (
-                            <div>
-                                <NavLink className='create-post-link' to={`/${communityId}/${community.name}/post`}>
-                                    Create a Post
-                                </NavLink>
-                            </div>
-                        )}
+
                     </div>
                 </div>
                 <div className="community-rules-card">
@@ -54,8 +59,10 @@ function CommunityPage() {
                     <div className="community-rules-list">
                         <div className="community-rules-line">1. Be Respectful.</div>
                         <div className="community-rules-line">2. Posts should relate to topic.</div>
+                        <div className="community-rules-line">3. No explicit content.</div>
                     </div>
                 </div>
+                <SidebarExtraCard />
             </div>
         </div>
     )

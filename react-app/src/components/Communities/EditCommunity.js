@@ -13,8 +13,8 @@ function EditCommunityForm() {
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
-    console.log(community)
-    console.log(communityId)
+    // console.log(community)
+    // console.log(communityId)
 
     useEffect(() => {
         if (community && community.description) {

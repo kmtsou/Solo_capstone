@@ -36,10 +36,9 @@ def edit_post(id):
         post = Post.query.get(id)
         post.title = form.data['title']
         post.content = form.data['content']
-        post.imageContent = form.data['imageContent']
         db.session.add(post)
         db.session.commit()
-        return post.to_dict()
+        return post.to_dict_rel()
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # delete a post

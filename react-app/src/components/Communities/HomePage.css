@@ -24,12 +24,33 @@
     word-wrap: break-word;
     overflow: visible;
     margin-top: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.home-card-header {
+    margin: 12px 0 12px 0;
 }
 
 .main-page-index-link {
     text-decoration: none;
+    color: white;
+    background-color: #0079D3;
+    padding: 4px 16px;
+    border-radius: 999px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 75%;
+    text-align: center;
 }
 
 .main-page-create-link {
     text-decoration: none;
+    color: white;
+    background-color: #0079D3;
+    padding: 4px 16px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+    width: 75%;
+    text-align: center;
 }
