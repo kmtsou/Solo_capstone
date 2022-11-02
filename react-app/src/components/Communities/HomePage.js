@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
 import PostList from "../Posts/PostList";
 import './HomePage.css'
+import SidebarExtraCard from "./SidebarExtraCard";
 
 function HomePage() {
     const user = useSelector((state) => state.session.user);
@@ -35,6 +36,7 @@ function HomePage() {
                         </NavLink>
                     )}
                 </div>
+                <SidebarExtraCard />
             </div>
         </div>
     )

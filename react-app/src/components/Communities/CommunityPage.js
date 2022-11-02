@@ -4,6 +4,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { loadCommunities } from '../../store/community';
 import CommunityPostList from "../Posts/CommunityPostList";
 import './CommunityPage.css'
+import SidebarExtraCard from "./SidebarExtraCard";
 
 function CommunityPage() {
     const { communityId } = useParams();
@@ -56,6 +57,7 @@ function CommunityPage() {
                         <div className="community-rules-line">2. Posts should relate to topic.</div>
                     </div>
                 </div>
+                <SidebarExtraCard />
             </div>
         </div>
     )

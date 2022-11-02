@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import './CreatePostForm.css'
 import { createPostThunk } from "../../store/post";
+import SidebarExtraCard from "../Communities/SidebarExtraCard";
 
 function CreatePost() {
     const dispatch = useDispatch();
@@ -39,45 +40,79 @@ function CreatePost() {
         }
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push(`/${communityId}/${communityName}`)
+    }
+
     return (
         <div className="create-post-container">
-            <form onSubmit={handleSubmit} className='create-post-form'>
-                {hasSubmitted && validationErrors.length > 0 && (
-                    <div>
-                        The following errors were found:
-                        <ul>
-                            {validationErrors.map((error) => (
-                                <li key={error} className='val-errors'>{error}</li>
-                            ))}
-                            {errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>)}
-                        </ul>
-                    </div>
-                )}
-                <div className="create-post-line">
-                    <label className="create-post-label">
-                        Title
-                    </label>
-                    <input className="create-post-input"
-                        type="text"
-                        value={title}
-                        onChange={(e) => { setTitle(e.target.value) }}>
-                    </input>
+            <div>
+                <div className="create-post-header">
+                    <div className="create-post-header-text">Create a Post in /{communityName}</div>
                 </div>
-                <div className="create-post-line">
-                    <label className="create-post-label">
+                <div className="create-post-form-container">
+                    <form onSubmit={handleSubmit} className='create-post-form'>
+                        {hasSubmitted && validationErrors.length > 0 && (
+                            <div>
+                                The following errors were found:
+                                <ul>
+                                    {validationErrors.map((error) => (
+                                        <li key={error} className='val-errors'>{error}</li>
+                                    ))}
+                                    {errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>)}
+                                </ul>
+                            </div>
+                        )}
+                        <div className="create-post-line">
+                            <label className="create-post-label">
+                                Title
+                            </label>
+                            <input className="create-post-input"
+                                type="text"
+                                value={title}
+                                onChange={(e) => { setTitle(e.target.value) }}>
+                            </input>
+                        </div>
+                        <div className="create-post-line">
+                            <label className="create-post-label">
+                                Text
+                            </label>
+                            <textarea className="create-post-textarea"
+                                value={content}
+                                onChange={(e) => { setContent(e.target.value) }}>
+                            </textarea>
+                        </div>
+                        <div className="create-post-button-container">
+                            <button onClick={handleCancel} className='cancel-button'>Cancel</button>
+                            <button className="create-post-submit-button" type="submit">Submit</button>
+                        </div>
+                    </form>
 
-                    </label>
-                    <textarea className="create-post-textarea"
-                        value={content}
-                        onChange={(e) => { setContent(e.target.value) }}>
-                    </textarea>
                 </div>
-                <div className="create-post-button-container">
-                    <button className="create-post-submit-button" type="submit">Submit</button>
+            </div>
+            <div className="create-post-sidebar">
+                <div className="create-post-rules-card">
+                    <div className="create-post-rules-header">
+                        Posting on linkit:
+                    </div>
+                    <div className="create-post-rules-line">
+                        1. Remember the human
+                    </div>
+                    <div className="create-post-rules-line">
+                        2. Behave like you would in real life
+                    </div>
+                    <div className="create-post-rules-line">
+                        3. Look for the original source of content
+                    </div>
+                    <div className="create-post-rules-line">
+                        4. Search for duplicates before posting
+                    </div>
+                    <div className="create-post-rules-line">
+                        5. Read the community's rules
+                    </div>
                 </div>
-            </form>
-            <div className="cancel-post-container">
-                <button onClick={() => history.push(`/${communityId}/${communityName}`)} className='cancel-button'>Cancel</button>
+                <SidebarExtraCard />
             </div>
         </div>
     )

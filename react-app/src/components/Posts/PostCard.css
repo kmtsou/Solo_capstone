@@ -48,6 +48,13 @@
     color: grey;
 }
 
+.post-card-content {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    overflow: hidden;
+    max-height: 250px;
+}
+
 .post-card-comment-counter {
     display: flex;
 }
