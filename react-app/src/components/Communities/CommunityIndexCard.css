@@ -22,4 +22,11 @@
 
 .community-card-left-number {
     margin-right: 14px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.community-card-left-name {
+    font-size: 16px;
+    font-weight: 500;
 }

@@ -5,6 +5,7 @@ import SignUpFormModal from './SignupModal';
 import LoginFormModal from './LoginModal';
 import ProfileButton from './Profilebutton';
 import './Navbar.css'
+import linkLogo from './link-24.png'
 
 function Navbar() {
     const sessionUser = useSelector(state => state.session.user);
@@ -16,8 +17,9 @@ function Navbar() {
         <div className='navbar'>
             <div className='nav-left'>
                 <NavLink exact to='/' className='home-link'>
+                    <img src={linkLogo} alt='logo-link'/>
                     <div className='logo-div'>
-                        logo goes here
+                        linkit
                     </div>
                 </NavLink>
             </div>

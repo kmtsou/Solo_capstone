@@ -3,11 +3,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 18px;
 }
 
 .create-community-form {
     display: flex;
     flex-direction: column;
+    min-width: 312px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.create-community-form-header {
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.create-community-form-subheader {
+    font-size: 12px;
+    font-weight: 400;
+    color: grey;
+    margin-top: 4px;
 }
 
 .create-community-line {
@@ -17,13 +38,58 @@
 }
 
 .create-community-textarea {
-    padding: 10px;
+    padding: 8px 16px 8px 16px;
     resize: none;
     height: 15vh;
     margin-top: 2px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 20px;
+    border: 1px solid #d3d3d3;
 }
 
 .create-community-input {
-    padding: 10px;
+    padding: 8px 16px 8px 16px;
     margin-top: 2px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 20px;
+    border: 1px solid #d3d3d3;
+}
+
+.cancel-button {
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: white;
+    border: 1px #0079D3 solid;
+    color: #0079D3;
+    border-radius: 9999px;
+    padding: 4px 16px 4px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #f2f8fc;
+}
+
+.create-community-button {
+    background-color: #0079D3;
+    border: 1px solid #0079D3;
+    color: white;
+    border-radius: 9999px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 16px 4px;
+    cursor: pointer;
+}
+
+.create-community-button:hover {
+    background-color: #006cbd;
+}
+
+.create-community-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
 }

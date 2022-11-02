@@ -17,7 +17,7 @@ function CommunityIndexCard({ community, index, user }) {
                 <div className="community-card-left">
                     <div className="community-card-left-text">
                         <div className="community-card-left-number">{index + 1}.</div>
-                        <div>/{community.name}</div>
+                        <div className="community-card-left-name">/{community.name}</div>
                     </div>
                 </div>
                 <div className="community-card-right">

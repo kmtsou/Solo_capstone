@@ -46,9 +46,20 @@ function CreateCommunityForm() {
         }
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push('/')
+    }
+
     return (
         <div className="create-community-container">
             <form className="create-community-form" onSubmit={handleSubmit}>
+                <div className="create-community-form-header">
+                    <div>Create a community</div>
+                    <div className="create-community-form-subheader">
+                        Community names can not be changed after creation.
+                    </div>
+                </div>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <div>
                         The following errors were found:
@@ -85,12 +96,10 @@ function CreateCommunityForm() {
                     />
                 </div>
                 <div className="create-community-button-container">
-                    <button type="submit" className="create-community-button">create community</button>
+                    <button onClick={handleCancel} className='cancel-button'>Cancel</button>
+                    <button type="submit" className="create-community-button">Create Community</button>
                 </div>
             </form>
-            <div>
-                <button onClick={() => history.push('/')}>cancel</button>
-            </div>
         </div>
     )
 };
