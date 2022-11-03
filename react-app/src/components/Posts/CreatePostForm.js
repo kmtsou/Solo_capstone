@@ -20,8 +20,17 @@ function CreatePost() {
         if (title.length < 2) {
             valErrors.push('Please provide a post title with more than 1 character')
         }
+        if (title.length > 300) {
+            valErrors.push('Please provide a post title with less than 300 characters')
+        }
+        if (content.length > 40000) {
+            valErrors.push('Character limit of 40000 for post exceeded')
+        }
+        if (content.length < 4) {
+            valErrors.push('Please provide a post body of at least 4 characters')
+        }
         setValidationErrors(valErrors);
-    }, [title])
+    }, [title, content])
 
     const handleSubmit = async (e) => {
         e.preventDefault();

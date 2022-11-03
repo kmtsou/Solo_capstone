@@ -70,6 +70,10 @@ button {
 
 .logo-div {
     height: 100%;
+    color: orange;
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 8px;
 }
 
 .nav-left {
@@ -89,6 +93,8 @@ button {
     text-decoration: none;
     color: black;
     cursor: pointer;
+    display: flex;
+    margin-left: 18px;
 }
 
 /* .searchbar-container {

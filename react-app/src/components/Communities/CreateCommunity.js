@@ -15,11 +15,17 @@ function CreateCommunityForm() {
 
     useEffect(() => {
         let errors = [];
-        if (name.length < 2) {
-            errors.push('Please provide a name with more than 1 character')
+        if (name.length < 4) {
+            errors.push('Please provide a name with at least 3 characters')
+        }
+        if (name.length > 21) {
+            errors.push('Please provide a name with at most 21 characters')
         }
         if (description.length < 20) {
             errors.push('Please provide a description with at least 20 characters')
+        }
+        if (description.length > 250) {
+            errors.push('Please provide a description of at most 250 characters')
         }
         setValidationErrors(errors);
     }, [name, description])
@@ -37,26 +43,39 @@ function CreateCommunityForm() {
         };
 
         let createdCommunity = await dispatch(createCommunityThunk(payload))
-        // if (createdCommunity) {
-        //     setErrors(createdCommunity)
-        // }
-
         if (createdCommunity) {
+            setErrors(createdCommunity)
+        }
+        console.log(errors)
+
+        if (typeof createdCommunity === 'object' && createdCommunity !== null && !Array.isArray(createdCommunity)) {
             history.push(`/communities/${createdCommunity.id}/${createdCommunity.name}`)
         }
+    }
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push('/')
     }
 
     return (
         <div className="create-community-container">
             <form className="create-community-form" onSubmit={handleSubmit}>
-                {hasSubmitted && validationErrors.length > 0 && (
+                <div className="create-community-form-header">
+                    <div>Create a community</div>
+                    <div className="create-community-form-subheader">
+                        Community names can not be changed after creation.
+                    </div>
+                </div>
+                {hasSubmitted && (
                     <div>
                         The following errors were found:
                         <ul>
-                            {validationErrors.map((error) => (
+                            {validationErrors.length > 0 && (validationErrors.map((error) => (
                                 <li key={error} className='val-errors'>{error}</li>
-                            ))}
-                            {errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>)}
+                            )))}
+
+                            {errors.length > 0 && (errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>))}
                         </ul>
                     </div>
                 )}
@@ -69,7 +88,7 @@ function CreateCommunityForm() {
                         value={name}
                         onChange={e => setName(e.target.value)}
                         required
-                        maxLength={50}
+                        maxLength={21}
                         className='create-community-input'
                     />
                 </div>
@@ -85,12 +104,10 @@ function CreateCommunityForm() {
                     />
                 </div>
                 <div className="create-community-button-container">
-                    <button type="submit" className="create-community-button">create community</button>
+                    <button onClick={handleCancel} className='cancel-button'>Cancel</button>
+                    <button type="submit" className="create-community-button">Create Community</button>
                 </div>
             </form>
-            <div>
-                <button onClick={() => history.push('/')}>cancel</button>
-            </div>
         </div>
     )
 };

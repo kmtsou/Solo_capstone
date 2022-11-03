@@ -130,3 +130,11 @@
     font-weight: bold;
     font-size: 22px;
 }
+
+.val-errors {
+    color: red;
+}
+
+.error-line {
+    color: red;
+}

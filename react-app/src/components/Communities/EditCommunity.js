@@ -27,6 +27,9 @@ function EditCommunityForm() {
         if (description.length < 20) {
             errors.push('Please provide a description with at least 20 characters')
         }
+        if (description.length > 250) {
+            errors.push('Please provide a description of at most 250 characters')
+        }
         setValidationErrors(errors);
     }, [description])
 
@@ -41,7 +44,7 @@ function EditCommunityForm() {
             description
         }
         let updatedCommunity = await dispatch(editCommunityThunk(payload, communityId))
-        if (updatedCommunity) {
+        if (typeof updatedCommunity === 'object' && updatedCommunity !== null && !Array.isArray(updatedCommunity)) {
             history.push(`/${communityId}/${communityName}`)
         }
     }
@@ -52,9 +55,17 @@ function EditCommunityForm() {
         history.push('/')
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        history.push(`/${communityId}/${communityName}`)
+    }
+
     return (
         <div className="edit-community-container">
             <form className="edit-community-form" onSubmit={handleSubmit}>
+                <div className="edit-community-form-header">
+                    <div>Change community description</div>
+                </div>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <div>
                         The following errors were found:
@@ -78,12 +89,16 @@ function EditCommunityForm() {
                     />
                 </div>
                 <div className="edit-community-button-container">
-                    <button type="submit" className="edit-community-button">submit edit</button>
+                    <button onClick={handleDelete} className='delete-community-button'>Delete</button>
+                    <div>
+                        <button onClick={handleCancel} className='cancel-button'>Cancel</button>
+                        <button type="submit" className="edit-community-button">Submit Edit</button>
+                    </div>
                 </div>
             </form>
             <div className="other-buttons-container">
-                <button onClick={handleDelete} className='delete-community-button'>Delete</button>
-                <button onClick={()=>history.push(`/${communityId}/${communityName}`)} className='cancel-button'>Cancel</button>
+
+
             </div>
         </div>
     )
