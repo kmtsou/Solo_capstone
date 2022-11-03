@@ -20,51 +20,64 @@ function CommunityPage() {
     if (!community) return null
 
     return (
-        <div className="community-page-content">
-            <div className="community-page-posts">
-                <CommunityPostList />
-            </div>
-            <div className="community-page-sidebar">
-                <div className="community-about-card">
-                    <div className="community-about-header">
-                        <div className="community-about-header-text">About Community</div>
+        <>
+            <div className="community-page-header-container">
+                <div className="community-page-header-colorblock"></div>
+                <div className="community-page-header-textblock">
+                    <div className="community-page-header-text">
+                        {community.name}
                     </div>
-                    <div className="community-about-description">
-                        <div className="community-about-description-text">
-                            {community.description}
+                    <div className="community-page-header-subtext">
+                        /{community.name}
+                    </div>
+                </div>
+            </div>
+            <div className="community-page-content">
+                <div className="community-page-posts">
+                    <CommunityPostList />
+                </div>
+                <div className="community-page-sidebar">
+                    <div className="community-about-card">
+                        <div className="community-about-header">
+                            <div className="community-about-header-text">About Community</div>
                         </div>
+                        <div className="community-about-description">
+                            <div className="community-about-description-text">
+                                {community.description}
+                            </div>
 
-                        {user && (
+                            {user && (
 
-                            <NavLink className='create-post-link' to={`/${communityId}/${community.name}/post`}>
-                                Create a Post
-                            </NavLink>
+                                <NavLink className='create-post-link' to={`/${communityId}/${community.name}/post`}>
+                                    Create a Post
+                                </NavLink>
 
-                        )}
+                            )}
 
-                        {user && user.id === community.owner_id && (
+                            {user && user.id === community.owner_id && (
 
-                            <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
-                                Edit Community Page
-                            </NavLink>
+                                <NavLink to={`/${communityId}/${community.name}/edit`} className='edit-community-link'>
+                                    Edit Community Page
+                                </NavLink>
 
-                        )}
+                            )}
 
+                        </div>
                     </div>
+                    <div className="community-rules-card">
+                        <div className="community-rules-header">
+                            <div className="community-rules-header-text">/{community.name} Rules</div>
+                        </div>
+                        <div className="community-rules-list">
+                            <div className="community-rules-line">1. Be Respectful.</div>
+                            <div className="community-rules-line">2. Posts should relate to topic.</div>
+                            <div className="community-rules-line">3. No explicit content.</div>
+                        </div>
+                    </div>
+                    <SidebarExtraCard />
                 </div>
-                <div className="community-rules-card">
-                    <div className="community-rules-header">
-                        <div className="community-rules-header-text">/{community.name} Rules</div>
-                    </div>
-                    <div className="community-rules-list">
-                        <div className="community-rules-line">1. Be Respectful.</div>
-                        <div className="community-rules-line">2. Posts should relate to topic.</div>
-                        <div className="community-rules-line">3. No explicit content.</div>
-                    </div>
-                </div>
-                <SidebarExtraCard />
             </div>
-        </div>
+        </>
     )
 }
 

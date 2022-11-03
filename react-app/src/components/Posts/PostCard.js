@@ -16,11 +16,13 @@ function PostCard({ post }) {
                         <div className='post-card-header-separator'>•</div>
                         <div className='post-card-header-text'>Posted by {post.poster.username}, {post.created_at}</div>
                     </div>
-                    <div className='post-card-title'>
+                    <h3 className='post-card-title'>
                         {post.title}
-                    </div>
+                    </h3>
                     <div className='post-card-content'>
-                        {post.content}
+                        <div className='post-card-body-content'>
+                            {post.content}
+                        </div>
                     </div>
                     <div className='post-card-comment-counter'>
                         <i className='far fa-comment' />

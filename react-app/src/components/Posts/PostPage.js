@@ -29,9 +29,9 @@ function PostPage() {
                         <div className='main-post-header-separator'>•</div>
                         <div className='main-post-header-text'>Posted by {post.poster.username}, {post.created_at}</div>
                     </div>
-                    <div className='post-title-div'>
+                    <h3 className='post-title-div'>
                         {post.title}
-                    </div>
+                    </h3>
                     <div className='post-content-div'>
                         {post.content}
                     </div>
@@ -39,8 +39,11 @@ function PostPage() {
 
                         {user && user.id === post.poster_id && (
                             <>
-                                <i className='far fa-edit' />
-                                <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`}>edit</NavLink>
+
+                                <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`} className='edit-post-link'>
+                                    <i className='far fa-edit' />
+                                    <div className='edit-post-link-text'>edit</div>
+                                </NavLink>
                             </>
                         )}
                     </div>
