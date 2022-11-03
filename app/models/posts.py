@@ -4,7 +4,7 @@ from datetime import datetime
 class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(300), nullable=False)
     content = db.Column(db.Text)
     # imageContent = db.Column(db.String)
     community_id = db.Column(db.Integer, db.ForeignKey('communities.id'), nullable=False)

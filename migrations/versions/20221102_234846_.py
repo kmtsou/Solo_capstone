@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 40b6d99e2579
+Revision ID: 002dc2278cdf
 Revises: 
-Create Date: 2022-10-31 15:10:52.084695
+Create Date: 2022-11-02 23:48:46.890356
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '40b6d99e2579'
+revision = '002dc2278cdf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,8 +29,8 @@ def upgrade():
     )
     op.create_table('communities',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=200), nullable=False),
-    sa.Column('description', sa.Text(), nullable=True),
+    sa.Column('name', sa.String(length=21), nullable=False),
+    sa.Column('description', sa.String(length=250), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -44,7 +44,7 @@ def upgrade():
     )
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(length=200), nullable=False),
+    sa.Column('title', sa.String(length=300), nullable=False),
     sa.Column('content', sa.Text(), nullable=True),
     sa.Column('community_id', sa.Integer(), nullable=False),
     sa.Column('poster_id', sa.Integer(), nullable=False),

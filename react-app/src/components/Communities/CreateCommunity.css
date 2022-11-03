@@ -93,3 +93,11 @@
     justify-content: flex-end;
     margin-top: 8px;
 }
+
+.val-errors {
+    color: red;
+}
+
+.error-line {
+    color: red;
+}

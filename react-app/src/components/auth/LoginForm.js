@@ -8,6 +8,8 @@ const LoginForm = ({ setShowLoginModal }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [hasSubmitted, setHasSubmitted] = useState(false);
+  // const [validationErrors, setValidationErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 

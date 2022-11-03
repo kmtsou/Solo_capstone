@@ -27,6 +27,9 @@ function EditCommunityForm() {
         if (description.length < 20) {
             errors.push('Please provide a description with at least 20 characters')
         }
+        if (description.length > 250) {
+            errors.push('Please provide a description of at most 250 characters')
+        }
         setValidationErrors(errors);
     }, [description])
 

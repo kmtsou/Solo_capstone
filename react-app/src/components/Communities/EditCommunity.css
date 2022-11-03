@@ -97,3 +97,11 @@
     justify-content: space-between;
     margin-top: 8px;
 }
+
+.val-errors {
+    color: red;
+}
+
+.error-line {
+    color: red;
+}

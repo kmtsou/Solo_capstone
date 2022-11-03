@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -10,8 +10,36 @@ const SignUpForm = ({ setShowSignUpModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let valErrors = [];
+    if (password.length < 6) {
+      valErrors.push('Please provide a password with at least 6 characters')
+    }
+    if (password.length > 255) {
+      valErrors.push('Please provide a password with at most 255 characters')
+    }
+    if (username.length > 40) {
+      valErrors.push('Please provide a username with 40 characters or less')
+    }
+    if (username.length < 2) {
+      valErrors.push('Please provide a username with at least 2 characters')
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      valErrors.push('Please provide a valid email')
+    }
+    if (email.length > 255) {
+      valErrors.push('Please provide a valid email')
+    }
+    if (email.length < 6) {
+      valErrors.push('Please provide a valid email')
+    }
+    setValidationErrors(valErrors);
+  }, [password, email, username])
 
   if (user) {
     setShowSignUpModal(false)
@@ -20,6 +48,11 @@ const SignUpForm = ({ setShowSignUpModal }) => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setHasSubmitted(true);
+    if (validationErrors.length > 0) {
+      return;
+    }
+    setErrors([])
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -52,6 +85,11 @@ const SignUpForm = ({ setShowSignUpModal }) => {
           <h3 className='signup-header-text'>Sign Up</h3>
         </div>
         <div className='signup-errors-container'>
+          {hasSubmitted && validationErrors.length > 0 && (
+            validationErrors.map((error) => (
+              <div key={error} className='val-errors-signup'>{error}</div>
+            ))
+          )}
           {errors.map((error, ind) => (
             <div key={ind} className='signup-errors-line'>{error}</div>
           ))}

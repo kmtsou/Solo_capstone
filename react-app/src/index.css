@@ -4,3 +4,7 @@ body {
     font-family: 'Noto Sans', Arial, sans-serif;
     background-color: #DAE0E6;
 }
+
+li {
+    list-style: none;
+}

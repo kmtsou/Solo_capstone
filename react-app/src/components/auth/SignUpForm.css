@@ -76,3 +76,7 @@
 .signup-errors-line {
     color: red;
 }
+
+.val-errors-signup {
+    color: red;
+}
