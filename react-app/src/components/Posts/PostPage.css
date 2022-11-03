@@ -34,6 +34,7 @@
     font-size: 12px;
     line-height: 16px;
     align-items: start;
+    overflow-wrap: break-word;
 }
 
 .post-content-div {
@@ -43,6 +44,7 @@
 .main-post-header-community {
     font-weight: 700;
     color: black;
+    overflow-wrap: break-word;
 }
 
 .main-post-header-separator {
@@ -52,6 +54,7 @@
 
 .main-post-header-text {
     color: grey;
+    overflow-wrap: break-word;
 }
 
 .post-footer-info {
