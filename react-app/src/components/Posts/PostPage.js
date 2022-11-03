@@ -54,6 +54,13 @@ function PostPage() {
                     <div className="community-about-header">
                         <div className="community-about-header-text">About Community</div>
                     </div>
+                    <div className='community-name-container'>
+                        <div className='community-name-div'>
+                            <NavLink to={`/${post.community.id}/${post.community.name}`} className='community-name-link'>
+                                /{post.community.name}
+                            </NavLink>
+                        </div>
+                    </div>
                     <div className="community-about-description">
                         <div className="community-about-description-text">
                             {post.community.description}

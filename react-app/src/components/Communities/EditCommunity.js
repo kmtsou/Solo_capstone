@@ -44,7 +44,7 @@ function EditCommunityForm() {
             description
         }
         let updatedCommunity = await dispatch(editCommunityThunk(payload, communityId))
-        if (updatedCommunity) {
+        if (typeof updatedCommunity === 'object' && updatedCommunity !== null && !Array.isArray(updatedCommunity)) {
             history.push(`/${communityId}/${communityName}`)
         }
     }

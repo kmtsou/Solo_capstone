@@ -58,6 +58,14 @@
     display: flex;
     align-items: center;
     width: fit-content;
+    text-decoration: none;
+    color: black;
+    padding: 4px 8px;
+    border-radius: 9999;
+}
+
+.edit-post-link:hover {
+    background-color: rgba(34, 34, 34, 0.075);
 }
 
 .edit-post-link-text {
@@ -137,4 +145,23 @@
 
 .community-about-description-text {
     margin-bottom: 8px;
+}
+
+.community-name-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.community-name-div {
+    width: 80%;
+}
+
+.community-name-link {
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
 }

@@ -46,8 +46,9 @@ function CreateCommunityForm() {
         if (createdCommunity) {
             setErrors(createdCommunity)
         }
+        console.log(errors)
 
-        if (createdCommunity) {
+        if (typeof createdCommunity === 'object' && createdCommunity !== null && !Array.isArray(createdCommunity)) {
             history.push(`/communities/${createdCommunity.id}/${createdCommunity.name}`)
         }
     }
@@ -66,14 +67,15 @@ function CreateCommunityForm() {
                         Community names can not be changed after creation.
                     </div>
                 </div>
-                {hasSubmitted && validationErrors.length > 0 && (
+                {hasSubmitted && (
                     <div>
                         The following errors were found:
                         <ul>
-                            {validationErrors.map((error) => (
+                            {validationErrors.length > 0 && (validationErrors.map((error) => (
                                 <li key={error} className='val-errors'>{error}</li>
-                            ))}
-                            {errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>)}
+                            )))}
+
+                            {errors.length > 0 && (errors.map((error, idx) => <li key={idx} className='error-line'>{error}</li>))}
                         </ul>
                     </div>
                 )}

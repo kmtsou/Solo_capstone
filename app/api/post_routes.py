@@ -39,7 +39,7 @@ def edit_post(id):
         db.session.add(post)
         db.session.commit()
         return post.to_dict_rel()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # delete a post
 @post_routes.route('/<int:id>', methods=["DELETE"])
