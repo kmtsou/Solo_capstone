@@ -62,9 +62,9 @@ function EditCommunityForm() {
     }
 
 
-    if (user.id !== community.owner_id) {
-        return null
-    }
+    // if (user.id !== community.owner_id) {
+    //     return null
+    // }
 
     return (
         <div className="edit-community-container">

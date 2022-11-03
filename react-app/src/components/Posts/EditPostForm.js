@@ -69,9 +69,9 @@ function EditPost() {
         history.push(`/${communityId}/${communityName}/comments/${postId}`)
     }
 
-    if (user.id !== post.poster_id) {
-        return null
-    }
+    // if (user.id !== post.poster_id) {
+    //     return null
+    // }
 
     return (
         <div className="edit-post-container">
