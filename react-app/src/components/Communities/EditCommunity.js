@@ -9,6 +9,7 @@ function EditCommunityForm() {
     const history = useHistory();
     const { communityId, communityName } = useParams();
     const community = useSelector(state => state.communities[communityId])
+    const user = useSelector(state => state.session.user)
     const [description, setDescription] = useState('');
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -59,6 +60,11 @@ function EditCommunityForm() {
         e.preventDefault();
         history.push(`/${communityId}/${communityName}`)
     }
+
+
+    // if (user.id !== community.owner_id) {
+    //     return null
+    // }
 
     return (
         <div className="edit-community-container">

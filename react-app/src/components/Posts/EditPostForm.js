@@ -10,6 +10,7 @@ function EditPost() {
     const history = useHistory();
     const { communityId, communityName, postId } = useParams();
     const post = useSelector(state => state.posts[postId]);
+    const user = useSelector(state => state.session.user)
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
@@ -67,6 +68,10 @@ function EditPost() {
         e.preventDefault();
         history.push(`/${communityId}/${communityName}/comments/${postId}`)
     }
+
+    // if (user.id !== post.poster_id) {
+    //     return null
+    // }
 
     return (
         <div className="edit-post-container">

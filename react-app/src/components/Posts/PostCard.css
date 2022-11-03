@@ -65,7 +65,8 @@
 .post-card-body-content {
     font-size: 14px;
     line-height: 21px;
-    word-break: break-word;
+    /* word-break: break-word; */
+    overflow-wrap: break-word;
 }
 
 .post-card-comment-counter {

@@ -36,6 +36,10 @@
     align-items: start;
 }
 
+.post-content-div {
+    overflow-wrap: break-word;
+}
+
 .main-post-header-community {
     font-weight: 700;
     color: black;
@@ -141,10 +145,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 288px;
+    min-width: 280px;
 }
 
 .community-about-description-text {
     margin-bottom: 8px;
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 .community-name-container {

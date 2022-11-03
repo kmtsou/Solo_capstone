@@ -49,7 +49,7 @@ function CreateCommunityForm() {
         console.log(errors)
 
         if (typeof createdCommunity === 'object' && createdCommunity !== null && !Array.isArray(createdCommunity)) {
-            history.push(`/communities/${createdCommunity.id}/${createdCommunity.name}`)
+            history.push(`/${createdCommunity.id}/${createdCommunity.name}`)
         }
     }
 
