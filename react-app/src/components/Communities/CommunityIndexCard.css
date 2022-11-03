@@ -1,10 +1,32 @@
 .community-card {
     display: flex;
     background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border-bottom: thin solid #EDEFF1;
+    padding: 0 24px;
+    height: 64px;
+    align-items: center;
 }
 
 .community-card-right {
     display: flex;
+}
+
+.community-card-link {
+    text-decoration: none;
+    color: black;
+}
+
+.community-card-left-text {
+    display: flex;
+}
+
+.community-card-left-number {
+    margin-right: 14px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.community-card-left-name {
+    font-size: 16px;
+    font-weight: 500;
 }

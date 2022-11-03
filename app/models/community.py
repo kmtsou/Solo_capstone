@@ -10,8 +10,8 @@ communityFollows = db.Table(
 class Community(db.Model):
     __tablename__ = "communities"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    description = db.Column(db.Text)
+    name = db.Column(db.String(21), nullable=False)
+    description = db.Column(db.String(250), nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     owner = db.relationship("User", back_populates="community")

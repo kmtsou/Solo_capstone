@@ -41,48 +41,57 @@ const deleteCommunity = (id) => {
 
 //thunks ------------------------------------------
 export const loadCommunities = () => async (dispatch) => {
-    const responce = await fetch('/api/communities/')
-    if (responce.ok) {
-        const data = await responce.json();
+    const response = await fetch('/api/communities/')
+    if (response.ok) {
+        const data = await response.json();
         dispatch(getAllCommunities(data.communities))
     }
 }
 
 export const createCommunityThunk = (communityData) => async (dispatch) => {
-    const responce = await fetch('/api/communities/', {
+    const response = await fetch('/api/communities/', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(communityData)
     });
-
-    if (responce.ok) {
-        const data = await responce.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(createCommunity(data.community));
         return data.community;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
     }
 }
 
 export const editCommunityThunk = (communityData, communityId) => async (dispatch) => {
-    const responce = await fetch(`/api/communities/${communityId}`, {
+    const response = await fetch(`/api/communities/${communityId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(communityData)
     });
 
-    if (responce.ok) {
-        const data = await responce.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(editCommunity(data))
         return data;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
     }
 }
 
 export const deleteCommunityThunk = (communityId) => async (dispatch) => {
-    const responce = await fetch(`/api/communities/${communityId}`, {
+    const response = await fetch(`/api/communities/${communityId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
     })
-    if (responce.ok) {
-        const data = await responce.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(deleteCommunity(communityId))
         return data
     }

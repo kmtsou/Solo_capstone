@@ -145,3 +145,11 @@
 .delete-post-button:hover {
     background-color: #ffcdbd;
 }
+
+.val-errors {
+    color: red;
+}
+
+.error-line {
+    color: red;
+}

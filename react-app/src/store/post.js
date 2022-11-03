@@ -50,9 +50,9 @@ const deletePost = (id) => {
 //thunks ---------------------------------------------------
 
 export const getAllPostsThunk = () => async dispatch => {
-    const responce = await fetch('/api/posts/')
-    if (responce.ok) {
-        const data = await responce.json();
+    const response = await fetch('/api/posts/')
+    if (response.ok) {
+        const data = await response.json();
         dispatch(getAllPosts(data.posts))
     }
 }
@@ -67,38 +67,48 @@ export const getCommunityPostsThunk = (communityId) => async dispatch => {
 }
 
 export const createPostThunk = (postData, communityId) => async dispatch => {
-    const responce = await fetch(`/api/communities/${communityId}/posts`, {
+    const response = await fetch(`/api/communities/${communityId}/posts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postData)
     })
-    if (responce.ok) {
-        const data = await responce.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(createPost(data))
         return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
     }
 }
 
 export const editPostThunk = (postData, postId) => async dispatch => {
-    const responce = await fetch(`/api/posts/${postId}`, {
+    const response = await fetch(`/api/posts/${postId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postData)
     });
-    if (responce.ok) {
-        const data = await responce.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(editPost(data))
         return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
     }
 }
 
 export const deletePostThunk = (id) => async dispatch => {
-    const responce = await fetch(`/api/posts/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" }
     })
-    if (responce.ok) {
-        const data = await responce.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(deletePost(id))
         return data;
     }
@@ -124,7 +134,7 @@ const postReducer = (state = {}, action) => {
         case EDIT_POST:
             return { ...state, [action.payload.id]: action.payload };
         case DELETE_POST:
-            const removedState = {...state}
+            const removedState = { ...state }
             delete removedState[action.id]
             return removedState;
         default:

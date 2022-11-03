@@ -21,9 +21,9 @@ function HomePage() {
                 <PostList />
             </div>
             <div className="main-page-sidebar">
-                <div>
+                {/* <div>
                     list of top communities
-                </div>
+                </div> */}
                 <div className="home-card">
                     <h3 className="home-card-header">Home</h3>
                     <div>Welcome to the app! Hope you enjoy your stay.</div>

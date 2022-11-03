@@ -3,11 +3,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 18px;
 }
 
 .edit-community-form {
     display: flex;
     flex-direction: column;
+    min-width: 460px;
+    padding: 16px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.edit-community-form-header {
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .edit-community-line {
@@ -17,13 +31,77 @@
 }
 
 .edit-community-textarea {
-    padding: 10px;
+    padding: 8px 16px 8px 16px;
     resize: none;
-    height: 15vh;
+    height: 20vh;
     margin-top: 2px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 20px;
+    border: 1px solid #d3d3d3;
 }
 
 /* .create-community-input {
     padding: 10px;
     margin-top: 2px;
 } */
+
+.cancel-button {
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: white;
+    border: 1px #0079D3 solid;
+    color: #0079D3;
+    border-radius: 9999px;
+    padding: 4px 16px 4px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: #f2f8fc;
+}
+
+.edit-community-button {
+    background-color: #0079D3;
+    border: 1px solid #0079D3;
+    color: white;
+    border-radius: 9999px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 4px 16px 4px;
+    cursor: pointer;
+}
+
+.edit-community-button:hover {
+    background-color: #006cbd;
+}
+
+.delete-community-button {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 16px 4px;
+    border-radius: 9999px;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid #d93a00;
+    color: #d93a00;
+}
+
+.delete-community-button:hover {
+    background-color: #ffcdbd;
+}
+
+.edit-community-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.val-errors {
+    color: red;
+}
+
+.error-line {
+    color: red;
+}

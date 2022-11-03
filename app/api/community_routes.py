@@ -12,7 +12,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'{error}')
     return errorMessages
 
 # get all communities
@@ -42,7 +42,7 @@ def create_community():
         db.session.add(community)
         db.session.commit()
         return {'community': community.to_dict()}
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # edit a community
 @community_routes.route('/<int:id>', methods=['PUT'])
@@ -55,7 +55,7 @@ def edit_community(id):
         db.session.add(community)
         db.session.commit()
         return community.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # delete a community
 @community_routes.route('/<int:id>', methods=['DELETE'])
@@ -89,4 +89,4 @@ def create_post(id):
         db.session.add(post)
         db.session.commit()
         return post.to_dict_rel()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400

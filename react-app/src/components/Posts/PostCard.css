@@ -48,13 +48,30 @@
     color: grey;
 }
 
+.post-card-title {
+    margin: 0;
+    word-wrap: break-word;
+    margin-bottom: 8px;
+}
+
 .post-card-content {
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
     overflow: hidden;
+    padding-bottom: 10px;
     max-height: 250px;
+}
+
+.post-card-body-content {
+    font-size: 14px;
+    line-height: 21px;
+    word-break: break-word;
 }
 
 .post-card-comment-counter {
     display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
