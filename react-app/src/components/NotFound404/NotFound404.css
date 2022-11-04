@@ -1,0 +1,27 @@
+.not-found-page {
+    display: flex;
+    justify-content: center;
+}
+
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.not-found-404 {
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 8px;
+}
+
+.not-found-text {
+    font-size: 24px;
+    margin-top: 12px;
+}

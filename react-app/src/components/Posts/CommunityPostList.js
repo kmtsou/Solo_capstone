@@ -4,6 +4,8 @@ import { NavLink, useParams } from 'react-router-dom';
 import { getCommunityPostsThunk } from '../../store/post';
 import PostCard from './PostCard';
 import './CommunityPostList.css'
+import { isEmptyObject } from '../../utils';
+import NoPostsCard from './NoPostsCard';
 
 function CommunityPostList() {
     const dispatch = useDispatch();
@@ -17,6 +19,8 @@ function CommunityPostList() {
         dispatch(getCommunityPostsThunk(communityId))
     }, [dispatch, communityId])
 
+    let isPostsEmptyObj = isEmptyObject(posts)
+
     if (!posts) return null
 
     return (
@@ -24,6 +28,9 @@ function CommunityPostList() {
             {postsArr.map(post => (
                 <PostCard post={post} key={`post ${post.id}`}/>
             ))}
+            {isPostsEmptyObj && (
+                <NoPostsCard />
+            )}
         </>
     )
 }

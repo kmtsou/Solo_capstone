@@ -1,0 +1,27 @@
+.no-posts-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.no-posts-header {
+    width: 100%;
+    overflow-wrap: break-word;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-left: 35px;
+    padding-top: 16px;
+    min-height: 140px;
+}
+
+.no-posts-header-text {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.no-posts-header-subtext {
+    font-size: 16px;
+    margin-top: 12px;
+}
