@@ -52,7 +52,6 @@ function CreateCommunityForm() {
         if (createdCommunity) {
             setErrors(createdCommunity)
         }
-        console.log(errors)
 
         if (typeof createdCommunity === 'object' && createdCommunity !== null && !Array.isArray(createdCommunity)) {
             history.push(`/${createdCommunity.id}/${createdCommunity.name}`)
