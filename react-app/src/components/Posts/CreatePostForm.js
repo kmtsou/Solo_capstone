@@ -29,6 +29,12 @@ function CreatePost() {
         if (content.length < 4) {
             valErrors.push('Please provide a post body of at least 4 characters')
         }
+        if (title.trim().length === 0) {
+            valErrors.push('Please provide a valid post title')
+        }
+        if (content.trim().length === 0) {
+            valErrors.push('Please provide a valid post body')
+        }
         setValidationErrors(valErrors);
     }, [title, content])
 

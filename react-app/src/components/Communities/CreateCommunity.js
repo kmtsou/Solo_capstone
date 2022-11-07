@@ -27,6 +27,12 @@ function CreateCommunityForm() {
         if (description.length > 250) {
             errors.push('Please provide a description of at most 250 characters')
         }
+        if (name.trim().length === 0) {
+            errors.push('Please provide a valid community name')
+        }
+        if (description.trim().length === 0) {
+            errors.push('Please provide a valid description')
+        }
         setValidationErrors(errors);
     }, [name, description])
 
