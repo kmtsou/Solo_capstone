@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 communityFollows = db.Table(
-    'communityFollows',
+    'communityfollows',
     db.Model.metadata,
     db.Column('users', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
     db.Column('communities', db.Integer, db.ForeignKey(add_prefix_for_prod('communities.id')), primary_key=True)
