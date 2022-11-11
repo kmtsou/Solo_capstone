@@ -4,5 +4,5 @@ def seed_community_follows():
     pass
 
 def undo_community_follows():
-    db.session.execute('TRUNCATE communityFollows RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE communityfollows RESTART IDENTITY CASCADE;')
     db.session.commit()

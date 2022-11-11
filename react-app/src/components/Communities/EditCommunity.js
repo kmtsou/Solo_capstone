@@ -14,8 +14,6 @@ function EditCommunityForm() {
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
-    // console.log(community)
-    // console.log(communityId)
 
     useEffect(() => {
         if (community && community.description) {
@@ -30,6 +28,9 @@ function EditCommunityForm() {
         }
         if (description.length > 250) {
             errors.push('Please provide a description of at most 250 characters')
+        }
+        if (description.trim().length === 0) {
+            errors.push('Please provide a valid description')
         }
         setValidationErrors(errors);
     }, [description])

@@ -27,6 +27,12 @@ function CreateCommunityForm() {
         if (description.length > 250) {
             errors.push('Please provide a description of at most 250 characters')
         }
+        if (name.trim().length === 0) {
+            errors.push('Please provide a valid community name')
+        }
+        if (description.trim().length === 0) {
+            errors.push('Please provide a valid description')
+        }
         setValidationErrors(errors);
     }, [name, description])
 
@@ -46,7 +52,6 @@ function CreateCommunityForm() {
         if (createdCommunity) {
             setErrors(createdCommunity)
         }
-        console.log(errors)
 
         if (typeof createdCommunity === 'object' && createdCommunity !== null && !Array.isArray(createdCommunity)) {
             history.push(`/${createdCommunity.id}/${createdCommunity.name}`)

@@ -38,6 +38,12 @@ const SignUpForm = ({ setShowSignUpModal }) => {
     if (email.length < 6) {
       valErrors.push('Please provide a valid email')
     }
+    if (username.trim().length === 0) {
+      valErrors.push('Please provide a valid username')
+    }
+    if (password.trim().length === 0) {
+      valErrors.push('Please provide a valid password')
+    }
     setValidationErrors(valErrors);
   }, [password, email, username])
 
