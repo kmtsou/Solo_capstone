@@ -54,7 +54,7 @@ def delete_post(id):
 # get post comments
 @post_routes.route('/<int:id>/comments')
 def get_comments(id):
-    postComments = Comment.query.filter(id == Comment.post_id).all()
+    postComments = Comment.query.filter((id == Comment.post_id),(Comment.parent_id == None)).all()
     return {'comments': [comment.to_dict_rel() for comment in postComments]}
 
 # create new comment
