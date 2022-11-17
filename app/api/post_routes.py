@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from ..models import db, Post
-from ..forms import PostForm
+from ..models import db, Post, Comment
+from ..forms import PostForm, CommentForm
 from flask_login import current_user
 
 post_routes = Blueprint('posts', __name__, url_prefix='/api/posts')
@@ -50,3 +50,25 @@ def delete_post(id):
         db.session.commit()
         return {'message': 'Post has been deleted'}
     return {'message': 'This post does not exist'}
+
+# get post comments
+@post_routes.route('/<int:id>/comments')
+def get_comments(id):
+    postComments = Comment.query.filter(id == Comment.post_id).all()
+    return {'comments': [comment.to_dict_rel() for comment in postComments]}
+
+# create new comment
+@post_routes.route('/<int:id>/comments', methods=['POST'])
+def create_comment(id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment(
+            content = form.data['content'],
+            post_id = id,
+            commenter_id = current_user.id
+        )
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict_rel()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400

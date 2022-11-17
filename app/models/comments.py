@@ -29,5 +29,6 @@ class Comment(db.Model):
             'post_id': self.post_id,
             'commenter_id': self.commenter_id,
             'content': self.content,
-            'post': self.post.to_dict()
+            'post': self.post.to_dict(),
+            'commenter': self.commenter.to_dict()
         }
