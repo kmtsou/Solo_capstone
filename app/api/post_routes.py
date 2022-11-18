@@ -57,7 +57,7 @@ def get_comments(id):
     postComments = Comment.query.filter((id == Comment.post_id),(Comment.parent_id == None)).all()
     return {'comments': [comment.to_dict_rel() for comment in postComments]}
 
-# create new comment
+# create new root comment
 @post_routes.route('/<int:id>/comments', methods=['POST'])
 def create_comment(id):
     form = CommentForm()
