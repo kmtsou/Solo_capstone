@@ -13,7 +13,6 @@ function Searchbar() {
 
     useEffect(() => {
         let isSubscribed = true;
-        console.log('this is search value:', search)
         const fetchData = async (search) => {
             const data = await fetch('/api/search/', {
                 method: 'POST',

@@ -62,14 +62,28 @@ export const createRootCommentThunk = (commentData, postId) => async dispatch =>
     }
 }
 
-export const editCommentThunk = (commentData) => async dispatch => {
-
+export const editCommentThunk = (commentData, commentId) => async dispatch => {
+    const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(commentData)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(editComment(data))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    }
 }
 
 export const deleteCommentThunk = (commentId) => async dispatch => {
     const response = await fetch(`/api/comments/${commentId}`, {
         method: 'DELETE',
-        headers: {"Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
     })
     if (response.ok) {
         const data = await response.json();

@@ -52,20 +52,20 @@ def delete_post(id):
     return {'message': 'This post does not exist'}
 
 # get post comments
-@post_routes.route('/<int:id>/comments')
-def get_comments(id):
-    postComments = Comment.query.filter((id == Comment.post_id),(Comment.parent_id == None)).all()
+@post_routes.route('/<int:postId>/comments')
+def get_comments(postId):
+    postComments = Comment.query.filter((postId == Comment.post_id),(Comment.parent_id == None)).all()
     return {'comments': [comment.to_dict_rel() for comment in postComments]}
 
 # create new root comment
-@post_routes.route('/<int:id>/comments', methods=['POST'])
-def create_comment(id):
+@post_routes.route('/<int:postId>/comments', methods=['POST'])
+def create_comment(postId):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         comment = Comment(
             content = form.data['content'],
-            post_id = id,
+            post_id = postId,
             commenter_id = current_user.id
         )
         db.session.add(comment)

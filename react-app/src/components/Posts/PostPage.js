@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import { getAllPostsThunk } from '../../store/post';
+import CommentList from '../Comments/CommentList';
+import CreateRootComment from '../Comments/CreateRootCommentForm';
 import SidebarExtraCard from '../Communities/SidebarExtraCard';
 import './PostPage.css'
 
@@ -47,6 +49,15 @@ function PostPage() {
                             </>
                         )}
                     </div>
+                </div>
+                <div className='comment-on-post-container'>
+                    <h3 className='comment-header-text'>Comments</h3>
+                    {user && (
+                        <CreateRootComment />
+                    )}
+                </div>
+                <div className='comment-list-container'>
+                    <CommentList />
                 </div>
             </div>
             <div className='post-page-sidebar'>

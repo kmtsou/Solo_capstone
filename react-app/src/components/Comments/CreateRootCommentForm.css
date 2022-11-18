@@ -1,0 +1,24 @@
+.create-comment-container {
+    padding-bottom: 12px;
+}
+
+.create-comment-label {
+    display: none;
+}
+
+.comment-form-body {
+    display: flex;
+    gap: .5rem;
+}
+
+.create-comment-textarea {
+    flex-grow: 1;
+    resize: none;
+    height: 70px;
+    border-radius: .5em;
+    padding: .5em;
+}
+
+.create-comment-button {
+    cursor: pointer;
+}
