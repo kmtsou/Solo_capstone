@@ -6,6 +6,7 @@ import LoginFormModal from './LoginModal';
 import ProfileButton from './Profilebutton';
 import './Navbar.css'
 import linkLogo from './link-24.png'
+import Searchbar from './Searchbar';
 
 function Navbar() {
     const sessionUser = useSelector(state => state.session.user);
@@ -22,6 +23,9 @@ function Navbar() {
                         linkit
                     </div>
                 </NavLink>
+            </div>
+            <div className='searchbar-container'>
+                <Searchbar />
             </div>
             <div className='nav-right'>
                 {!sessionUser && (

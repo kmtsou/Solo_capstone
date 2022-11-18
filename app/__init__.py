@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.community_routes import community_routes
 from .api.post_routes import post_routes
 from .api.comment_routes import comment_routes
+from .api.search_routes import search_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(community_routes)
 app.register_blueprint(post_routes)
 app.register_blueprint(comment_routes)
+app.register_blueprint(search_routes)
 db.init_app(app)
 Migrate(app, db)
 
