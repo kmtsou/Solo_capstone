@@ -73,6 +73,13 @@
     width: fit-content;
 }
 
+.edit-comment-div {
+    cursor: pointer;
+    width: fit-content;
+}
+
 .comment-card-footer {
     padding-bottom: 8px;
+    display: flex;
+    gap: 1rem;
 }

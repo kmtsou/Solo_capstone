@@ -10,6 +10,10 @@ function CommentCard({ comment }) {
         await dispatch(deleteCommentThunk(comment.id))
     }
 
+    const handleEdit = (e) => {
+        return
+    }
+
     return (
         <div className='comment-card'>
             <div className='comment-card-leftside'>
@@ -28,7 +32,9 @@ function CommentCard({ comment }) {
                     <div className='delete-comment-div' onClick={handleDelete}>
                         <i className='fas fa-trash'></i>
                     </div>
-
+                    <div className='edit-comment-div' onClick={handleEdit}>
+                        <i className='fas fa-edit'></i>
+                    </div>
                 </div>
             </div>
         </div>

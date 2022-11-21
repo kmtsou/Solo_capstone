@@ -25,8 +25,8 @@ function PostCard({ post }) {
                         </div>
                     </div>
                     <div className='post-card-comment-counter'>
-                        {/* <i className='far fa-comment' />
-                        <div>Comments</div> */}
+                        <i className='far fa-comment' />
+                        <div>Comments</div>
                     </div>
                 </div>
             </div>
