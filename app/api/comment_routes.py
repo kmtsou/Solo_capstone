@@ -32,12 +32,12 @@ def comment_on_comment(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # edit comment
-@comment_routes.route('/<int:id>', methods=['PUT'])
-def edit_comment(id):
+@comment_routes.route('/<int:commentId>', methods=['PUT'])
+def edit_comment(commentId):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        comment = Comment.query.get(id)
+        comment = Comment.query.get(commentId)
         comment.content = form.data['content']
         db.session.add(comment)
         db.session.commit()

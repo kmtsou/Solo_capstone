@@ -4,13 +4,19 @@ import { useParams } from 'react-router-dom';
 import { editCommentThunk } from '../../store/comment';
 import './EditCommentForm.css'
 
-function EditCommentForm() {
+function EditCommentForm({ comment, setIsEditting }) {
     const dispatch = useDispatch();
     const { communityId, communityName, postId } = useParams();
     const [content, setContent] = useState('');
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
+
+    useEffect(() => {
+        if (comment && comment.content) {
+            setContent(comment.content)
+        }
+    }, [comment])
 
     useEffect(() => {
         let valErrors = [];
@@ -29,9 +35,10 @@ function EditCommentForm() {
         const payload = {
             content
         }
-        let edittedComment = await dispatch(editCommentThunk(payload, postId))
+        let edittedComment = await dispatch(editCommentThunk(payload, comment.id))
         if (edittedComment) {
             setHasSubmitted(false)
+            setIsEditting(false)
         }
     }
 

@@ -26,6 +26,7 @@ function PostCard({ post }) {
                     </div>
                     <div className='post-card-comment-counter'>
                         <i className='far fa-comment' />
+                        <div>{post.comments.length}</div>
                         <div>Comments</div>
                     </div>
                 </div>

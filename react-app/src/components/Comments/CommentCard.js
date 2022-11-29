@@ -1,9 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteCommentThunk } from '../../store/comment';
+import EditCommentForm from './EditCommentForm';
 import './CommentCard.css'
 
 function CommentCard({ comment }) {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user)
+    const [isEditting, setIsEditting] = useState(false);
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -11,8 +15,9 @@ function CommentCard({ comment }) {
     }
 
     const handleEdit = (e) => {
-        return
+        isEditting ? setIsEditting(false) : setIsEditting(true)
     }
+
 
     return (
         <div className='comment-card'>
@@ -25,15 +30,22 @@ function CommentCard({ comment }) {
                 </div>
                 <div className='comment-card-content'>
                     <div className='comment-card-body-content'>
-                        {comment.content}
+                        {isEditting ? <EditCommentForm comment={comment} setIsEditting={setIsEditting} /> : comment.content}
+                        {/* {comment.content} */}
                     </div>
                 </div>
                 <div className='comment-card-footer'>
-                    <div className='delete-comment-div' onClick={handleDelete}>
-                        <i className='fas fa-trash'></i>
-                    </div>
-                    <div className='edit-comment-div' onClick={handleEdit}>
-                        <i className='fas fa-edit'></i>
+                    {user && user.username === comment.commenter.username && (<>
+                        <div className='delete-comment-div' onClick={handleDelete}>
+                            <i className='fas fa-trash'></i>
+                        </div>
+                        <div className='edit-comment-div' onClick={handleEdit}>
+                            <i className='fas fa-edit'></i>
+                        </div>
+                    </>
+                    )}
+                    <div className='reply-comment-div'>
+
                     </div>
                 </div>
             </div>
