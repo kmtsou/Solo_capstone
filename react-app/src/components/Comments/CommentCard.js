@@ -18,6 +18,7 @@ function CommentCard({ comment }) {
         isEditting ? setIsEditting(false) : setIsEditting(true)
     }
 
+    let localDatetime = new Date(comment.created_at).toLocaleString()
 
     return (
         <div className='comment-card'>
@@ -26,7 +27,9 @@ function CommentCard({ comment }) {
             </div>
             <div className='comment-card-rightside'>
                 <div className='comment-card-header'>
-                    <div className='comment-card-header-text'>Posted by {comment.commenter.username}, {comment.created_at}</div>
+                    <div className='comment-card-header-text'>{comment.commenter.username}</div>
+                    <div className='comment-card-header-separator'>•</div>
+                    <div className='comment-card-header-date'>{localDatetime}</div>
                 </div>
                 <div className='comment-card-content'>
                     <div className='comment-card-body-content'>
@@ -37,10 +40,12 @@ function CommentCard({ comment }) {
                 <div className='comment-card-footer'>
                     {user && user.username === comment.commenter.username && (<>
                         <div className='delete-comment-div' onClick={handleDelete}>
-                            <i className='fas fa-trash'></i>
+                            <i className='far fa-trash-alt'></i>
+                            <div className='comment-footer-text'>Delete</div>
                         </div>
                         <div className='edit-comment-div' onClick={handleEdit}>
-                            <i className='fas fa-edit'></i>
+                            <i className='far fa-edit'></i>
+                            <div className='comment-footer-text'>Edit</div>
                         </div>
                     </>
                     )}

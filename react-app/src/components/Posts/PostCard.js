@@ -4,6 +4,8 @@ import './PostCard.css'
 function PostCard({ post }) {
     // const { communityId, communityName } = useParams();
 
+    let localeDatetime = new Date(post.created_at).toLocaleString()
+
     return (
         <NavLink to={`/${post.community_id}/${post.community.name}/comments/${post.id}`}>
             <div className='post-card'>
@@ -14,7 +16,7 @@ function PostCard({ post }) {
                     <div className='post-card-header'>
                         <div className='post-card-header-community'>{`/${post.community.name}`}</div>
                         <div className='post-card-header-separator'>•</div>
-                        <div className='post-card-header-text'>Posted by {post.poster.username}, {post.created_at}</div>
+                        <div className='post-card-header-text'>Posted by {post.poster.username}, {localeDatetime}</div>
                     </div>
                     <h3 className='post-card-title'>
                         {post.title}
