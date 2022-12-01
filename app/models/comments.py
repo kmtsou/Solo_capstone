@@ -11,7 +11,7 @@ class Comment(db.Model):
     commenter_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     content = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    parent_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
+    parent_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id')))
     children = db.relationship("Comment", cascade='all, delete-orphan')
 
     post = db.relationship("Post", back_populates='comments')
