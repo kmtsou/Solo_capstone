@@ -11,6 +11,11 @@
 .post-page-main {
     margin-right: 15px;
     width: 640px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: white;
+    border-radius: 4px;
+    border: 1px solid #ccc; */
 }
 
 .post-title-div {
@@ -21,8 +26,11 @@
 
 .main-post-container {
     background-color: white;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     margin-top: 16px;
     padding: 8px 8px 8px 40px;
 }
@@ -34,6 +42,7 @@
     font-size: 12px;
     line-height: 16px;
     align-items: start;
+    overflow-wrap: break-word;
 }
 
 .post-content-div {
@@ -43,6 +52,7 @@
 .main-post-header-community {
     font-weight: 700;
     color: black;
+    overflow-wrap: break-word;
 }
 
 .main-post-header-separator {
@@ -52,6 +62,7 @@
 
 .main-post-header-text {
     color: grey;
+    overflow-wrap: break-word;
 }
 
 .post-footer-info {
@@ -172,4 +183,34 @@
     font-size: 18px;
     color: black;
     text-decoration: none;
+}
+
+.comment-on-post-container {
+    background-color: white;
+}
+
+.comment-header-text {
+    padding-left: 40px;
+}
+
+.comment-form-body {
+    padding-left: 40px;
+}
+
+.comment-on-post-container {
+    /* border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom: 1px solid #ccc; */
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.comment-list-container {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding-bottom: 8px;
+    background-color: white;
 }

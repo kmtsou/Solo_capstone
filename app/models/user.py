@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
 
     community = db.relationship("Community", back_populates="owner", cascade="all, delete")
     posts = db.relationship("Post", back_populates='poster', cascade="all, delete")
+    comments = db.relationship("Comment", back_populates='commenter', cascade='all, delete')
     user_follows = db.relationship(
         "Community",
         secondary=communityFollows,

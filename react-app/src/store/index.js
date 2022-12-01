@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 import session from './session';
 import communityReducer from './community';
 import postReducer from './post';
+import searchReducer from './search';
+import commentReducer from './comment';
 
 const rootReducer = combineReducers({
   session,
   communities: communityReducer,
-  posts: postReducer
+  posts: postReducer,
+  comments: commentReducer,
+  search: searchReducer
 });
 
 

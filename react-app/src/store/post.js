@@ -58,9 +58,9 @@ export const getAllPostsThunk = () => async dispatch => {
 }
 
 export const getCommunityPostsThunk = (communityId) => async dispatch => {
-    const responce = await fetch(`/api/communities/${communityId}/posts`)
-    if (responce.ok) {
-        const data = await responce.json();
+    const response = await fetch(`/api/communities/${communityId}/posts`)
+    if (response.ok) {
+        const data = await response.json();
         dispatch(getCommunityPosts(data.posts))
         return data
     }

@@ -18,6 +18,7 @@ import PostPage from './components/Posts/PostPage';
 import EditPost from './components/Posts/EditPostForm';
 import Footer from './components/Footer/Footer';
 import NotFound404 from './components/NotFound404';
+import CommunitySearchIndex from './components/Communities/CommunitySearchPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -73,6 +74,9 @@ function App() {
         </Route>
         <Route path='/:communityId/:communityName' exact={true}>
           <CommunityPage />
+        </Route>
+        <Route path='/search'>
+          <CommunitySearchIndex />
         </Route>
         <Route>
           <NotFound404 />
