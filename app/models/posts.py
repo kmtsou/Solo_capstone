@@ -16,6 +16,7 @@ class Post(db.Model):
 
     poster = db.relationship("User", back_populates='posts')
     community = db.relationship("Community", back_populates='posts')
+    comments = db.relationship("Comment", back_populates='post', cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -36,5 +37,6 @@ class Post(db.Model):
             'poster_id': self.poster_id,
             'created_at': self.created_at,
             'poster': self.poster.to_dict(),
-            'community': self.community.to_dict()
+            'community': self.community.to_dict(),
+            'comments': [comment.to_dict() for comment in self.comments]
         }

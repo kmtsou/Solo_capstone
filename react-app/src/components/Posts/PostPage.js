@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import { getAllPostsThunk } from '../../store/post';
+import CommentList from '../Comments/CommentList';
+import CreateRootComment from '../Comments/CreateRootCommentForm';
 import SidebarExtraCard from '../Communities/SidebarExtraCard';
 import './PostPage.css'
 
@@ -20,6 +22,8 @@ function PostPage() {
         return null
     }
 
+    let localeDatetime = new Date(post.created_at).toLocaleString()
+
     return (
         <div className='post-page-content'>
             <div className='post-page-main'>
@@ -27,7 +31,7 @@ function PostPage() {
                     <div className='post-header-info'>
                         <div className='main-post-header-community'>{`/${post.community.name}`}</div>
                         <div className='main-post-header-separator'>•</div>
-                        <div className='main-post-header-text'>Posted by {post.poster.username}, {post.created_at}</div>
+                        <div className='main-post-header-text'>Posted by {post.poster.username}, {localeDatetime}</div>
                     </div>
                     <h3 className='post-title-div'>
                         {post.title}
@@ -42,11 +46,20 @@ function PostPage() {
 
                                 <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`} className='edit-post-link'>
                                     <i className='far fa-edit' />
-                                    <div className='edit-post-link-text'>edit</div>
+                                    <div className='edit-post-link-text'>Edit</div>
                                 </NavLink>
                             </>
                         )}
                     </div>
+                </div>
+                <div className='comment-on-post-container'>
+                    <h3 className='comment-header-text'>Comments</h3>
+                    {user && (
+                        <CreateRootComment />
+                    )}
+                </div>
+                <div className='comment-list-container'>
+                    <CommentList />
                 </div>
             </div>
             <div className='post-page-sidebar'>

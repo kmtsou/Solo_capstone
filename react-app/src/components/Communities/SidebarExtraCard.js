@@ -29,7 +29,7 @@ function SidebarExtraCard() {
                 </div>
                 <div className='bottom-card-links'>
                     <a href='https://github.com/kmtsou' target='_blank' rel='noopener noreferrer' className='github-link'>github</a>
-                    <a href='https://www.linkedin.com/' target='_blank' rel='noopener noreferrer' className='linkedin-link'>linkedin</a>
+                    <a href='https://www.linkedin.com/in/kevin-tsou-07aa99111/' target='_blank' rel='noopener noreferrer' className='linkedin-link'>linkedin</a>
                 </div>
             </div>
             <div className='bottom-card-rights-reserved'>

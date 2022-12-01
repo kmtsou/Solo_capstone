@@ -1,0 +1,35 @@
+.create-comment-container {
+    padding-bottom: 12px;
+}
+
+.create-comment-label {
+    display: none;
+}
+
+.comment-form-body {
+    display: flex;
+    gap: .5rem;
+    padding-right: 8px;
+}
+
+.create-comment-textarea {
+    flex-grow: 1;
+    resize: none;
+    height: 70px;
+    border-radius: .5em;
+    padding: .5em;
+}
+
+.create-comment-button {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #0079D3;
+    border: 1px solid #0079D3;
+    color: white;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.create-comment-button:hover {
+    background-color: #006cbd;
+}
