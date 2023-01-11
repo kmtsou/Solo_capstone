@@ -41,3 +41,6 @@ class Post(db.Model):
             'community': self.community.to_dict(),
             'comments': [comment.to_dict() for comment in self.comments]
         }
+
+    def vote_total(self):
+        pass
