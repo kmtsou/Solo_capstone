@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from ..models import db, Post, Comment
 from ..forms import PostForm, CommentForm
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 post_routes = Blueprint('posts', __name__, url_prefix='/api/posts')
 
@@ -29,6 +29,7 @@ def get_post_by_id(id):
 
 # edit a post
 @post_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def edit_post(id):
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -43,6 +44,7 @@ def edit_post(id):
 
 # delete a post
 @post_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
 def delete_post(id):
     post = Post.query.get(id)
     if (post):
@@ -59,6 +61,7 @@ def get_comments(postId):
 
 # create new root comment
 @post_routes.route('/<int:postId>/comments', methods=['POST'])
+@login_required
 def create_comment(postId):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']

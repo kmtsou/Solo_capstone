@@ -3,3 +3,4 @@ from .user import User
 from .community import Community, communityFollows
 from .posts import Post
 from .comments import Comment
+from .votes import Vote

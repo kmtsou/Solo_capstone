@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from ..models import db, Community, Post
 from ..forms import CommunityForm, EditCommunityForm, PostForm
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 community_routes = Blueprint('communities', __name__, url_prefix='/api/communities')
 
@@ -29,6 +29,7 @@ def single_community(id):
 
 # create a community
 @community_routes.route('/', methods=["POST"])
+@login_required
 def create_community():
     form = CommunityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -46,6 +47,7 @@ def create_community():
 
 # edit a community
 @community_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def edit_community(id):
     form = EditCommunityForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -59,6 +61,7 @@ def edit_community(id):
 
 # delete a community
 @community_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_community(id):
     community = Community.query.get(id)
     if (community):
@@ -75,6 +78,7 @@ def community_posts(id):
 
 # create a post in community
 @community_routes.route('/<int:id>/posts', methods=["POST"])
+@login_required
 def create_post(id):
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
