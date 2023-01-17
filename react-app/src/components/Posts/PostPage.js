@@ -28,28 +28,35 @@ function PostPage() {
         <div className='post-page-content'>
             <div className='post-page-main'>
                 <div className='main-post-container'>
-                    <div className='post-header-info'>
-                        <div className='main-post-header-community'>{`/${post.community.name}`}</div>
-                        <div className='main-post-header-separator'>•</div>
-                        <div className='main-post-header-text'>Posted by {post.poster.username}, {localeDatetime}</div>
+                    <div className='main-post-container-leftside'>
+                        <i className='fas fa-arrow-up'></i>
+                        <div>0</div>
+                        <i className='fas fa-arrow-down'></i>
                     </div>
-                    <h3 className='post-title-div'>
-                        {post.title}
-                    </h3>
-                    <div className='post-content-div'>
-                        {post.content}
-                    </div>
-                    <div className='post-footer-info'>
+                    <div className='main-post-container-rightside'>
+                        <div className='post-header-info'>
+                            <div className='main-post-header-community'>{`/${post.community.name}`}</div>
+                            <div className='main-post-header-separator'>•</div>
+                            <div className='main-post-header-text'>Posted by {post.poster.username}, {localeDatetime}</div>
+                        </div>
+                        <h3 className='post-title-div'>
+                            {post.title}
+                        </h3>
+                        <div className='post-content-div'>
+                            {post.content}
+                        </div>
+                        <div className='post-footer-info'>
 
-                        {user && user.id === post.poster_id && (
-                            <>
+                            {user && user.id === post.poster_id && (
+                                <>
 
-                                <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`} className='edit-post-link'>
-                                    <i className='far fa-edit' />
-                                    <div className='edit-post-link-text'>Edit</div>
-                                </NavLink>
-                            </>
-                        )}
+                                    <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`} className='edit-post-link'>
+                                        <i className='far fa-edit' />
+                                        <div className='edit-post-link-text'>Edit</div>
+                                    </NavLink>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className='comment-on-post-container'>

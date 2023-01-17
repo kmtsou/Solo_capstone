@@ -32,7 +32,23 @@
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     margin-top: 16px;
-    padding: 8px 8px 8px 40px;
+    padding: 8px 8px 8px 0px;
+    display: flex;
+    max-width: 640px;
+}
+
+.main-post-container-leftside {
+    display: flex;
+    flex-direction: column;
+    padding-top: 12px;
+    width: 8%;
+    align-items: center;
+    font-size: 18px;
+    color: grey;
+}
+
+.main-post-container-rightside {
+    width: 92%;
 }
 
 .post-header-info {

@@ -43,4 +43,4 @@ class Post(db.Model):
         }
 
     def vote_total(self):
-        pass
+        return sum(vote.vote for vote in self.votes)

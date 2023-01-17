@@ -23,6 +23,9 @@ function CommentCard({ comment }) {
     return (
         <div className='comment-card'>
             <div className='comment-card-leftside'>
+                <i className='fas fa-arrow-up'></i>
+                <div>0</div>
+                <i className='fas fa-arrow-down'></i>
 
             </div>
             <div className='comment-card-rightside'>

@@ -10,7 +10,9 @@ function PostCard({ post }) {
         <NavLink to={`/${post.community_id}/${post.community.name}/comments/${post.id}`}>
             <div className='post-card'>
                 <div className='post-card-leftside'>
-
+                    <i className='fas fa-arrow-up'></i>
+                    <div>0</div>
+                    <i className='fas fa-arrow-down'></i>
                 </div>
                 <div className='post-card-rightside'>
                     <div className='post-card-header'>
