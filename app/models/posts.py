@@ -39,7 +39,8 @@ class Post(db.Model):
             'created_at': self.created_at,
             'poster': self.poster.to_dict(),
             'community': self.community.to_dict(),
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            # 'votes': [vote.to_dict_post() for vote in self.votes]
         }
 
     def vote_total(self):
