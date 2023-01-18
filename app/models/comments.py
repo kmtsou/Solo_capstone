@@ -35,7 +35,9 @@ class Comment(db.Model):
             'content': self.content,
             'created_at': self.created_at,
             'post': self.post.to_dict(),
-            'commenter': self.commenter.to_dict()
+            'commenter': self.commenter.to_dict(),
+            'votes': [vote.to_dict_comment() for vote in self.votes],
+            'voteTotal': self.vote_total()
         }
 
     def vote_total(self):

@@ -5,6 +5,12 @@ const CREATE_POST = 'posts/createPost'
 const EDIT_POST = 'posts/editPost'
 const DELETE_POST = 'posts/deletePost'
 
+//votes
+const CREATE_VOTE_POST = 'posts/CreateVotePost'
+const EDIT_VOTE_POST = 'posts/EditVotePost'
+const REMOVE_VOTE_POST = 'posts/RemoveVotePost'
+//
+
 const getPost = payload => {
     return {
         type: GET_POST,
@@ -44,6 +50,27 @@ const deletePost = (id) => {
     return {
         type: DELETE_POST,
         id
+    }
+}
+
+const CreateVotePost = (payload) => {
+    return {
+        type: CREATE_VOTE_POST,
+        payload
+    }
+}
+
+const EditVotePost = (payload) => {
+    return {
+        type: EDIT_VOTE_POST,
+        payload
+    }
+}
+
+const RemoveVotePost = (payload) => {
+    return {
+        type: REMOVE_VOTE_POST,
+        payload
     }
 }
 
