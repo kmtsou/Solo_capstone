@@ -40,9 +40,16 @@ class Post(db.Model):
             'poster': self.poster.to_dict(),
             'community': self.community.to_dict(),
             'comments': [comment.to_dict() for comment in self.comments],
-            'votes': [vote.to_dict_post() for vote in self.votes],
+            'votes': self.normalize_votes(),
             'voteTotal': self.vote_total()
         }
 
     def vote_total(self):
         return sum(vote.vote for vote in self.votes)
+
+    def normalize_votes(self):
+        NormalizedObj = {}
+        array = [vote.to_dict_post() for vote in self.votes]
+        for obj in array:
+            NormalizedObj[obj.id] = obj
+        return NormalizedObj

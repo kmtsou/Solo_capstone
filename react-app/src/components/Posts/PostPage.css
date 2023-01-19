@@ -44,6 +44,24 @@
     width: 8%;
     align-items: center;
     font-size: 18px;
+}
+
+.post-up-arrow-div {
+    cursor: pointer;
+}
+
+.post-down-arrow-div {
+    cursor: pointer;
+}
+.upvoted {
+    color: #ff4500;
+}
+
+.downvoted {
+    color: #7193ff;
+}
+
+.notvoted {
     color: grey;
 }
 

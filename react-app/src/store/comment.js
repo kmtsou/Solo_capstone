@@ -5,8 +5,8 @@ const DELETE_COMMENT = 'comments/deleteComment'
 
 //votes
 const CREATE_VOTE_COMMENT = 'comments/CreateVoteComment'
-const EDIT_VOTE_COMMENT = 'comments/EditVoteComment'
 const REMOVE_VOTE_COMMENT = 'comments/RemoveVoteComment'
+// const EDIT_VOTE_COMMENT = 'comments/EditVoteComment'
 //
 
 const getPostComments = payload => {
@@ -44,12 +44,12 @@ const CreateVoteComment = (payload) => {
     }
 }
 
-const EditVoteComment = (payload) => {
-    return {
-        type: EDIT_VOTE_COMMENT,
-        payload
-    }
-}
+// const EditVoteComment = (payload) => {
+//     return {
+//         type: EDIT_VOTE_COMMENT,
+//         payload
+//     }
+// }
 
 const RemoveVoteComment = (payload) => {
     return {
@@ -120,34 +120,27 @@ export const deleteCommentThunk = (commentId) => async dispatch => {
 }
 
 export const CreateVoteCommentThunk = (commentId, voteData) => async dispatch => {
-    const response = await fetch(`/api/votes${commentId}`, {
+    const response = await fetch(`/api/votes/comment`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(voteData)
     })
     if (response.ok) {
         const data = await response.json();
+        dispatch(CreateVoteComment(data))
+        return data
     }
 }
 
-export const EditVoteCommentThunk = (commentId, voteData) => async dispatch => {
-    const responce = await fetch(`/api/votes${commentId}`, {
-        method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(voteData)
-    })
-    if (responce.ok) {
-
-    }
-}
-
-export const RemoveVoteCommentThunk = (commentId) => async dispatch => {
-    const responce = await fetch(`/api/votes${commentId}`, {
+export const RemoveVoteCommentThunk = (id) => async dispatch => {
+    const response = await fetch(`/api/votes/${id}`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" }
     })
-    if (responce.ok) {
-
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(RemoveVoteComment(data))
+        return data
     }
 }
 
@@ -167,6 +160,12 @@ const commentReducer = (state = {}, action) => {
             let deleteState = { ...state }
             delete deleteState[action.id]
             return deleteState;
+        case CREATE_VOTE_COMMENT:
+            return {...state, [action.payload.comment_id]: {...state.action.payload.comment_id, votes: {...state.action.payload.comment_id.votes, [action.payload.id]: action.payload}}}
+        case REMOVE_VOTE_COMMENT:
+            let deleteVoteState = {...state}
+            delete deleteVoteState[action.payload.comment_id]['votes'][action.payload.id]
+            return deleteVoteState
         default:
             return state;
     }

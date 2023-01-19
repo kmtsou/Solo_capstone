@@ -22,8 +22,27 @@
     padding-top: 12px;
     width: 8%;
     font-size: 18px;
-    color: grey;
     z-index: 1;
+}
+
+.post-up-arrow-div {
+    cursor: pointer;
+}
+
+.post-down-arrow-div {
+    cursor: pointer;
+}
+
+.upvoted {
+    color: #ff4500;
+}
+
+.downvoted {
+    color: #7193ff;
+}
+
+.notvoted {
+    color: grey;
 }
 
 .post-card-rightside {

@@ -29,8 +29,27 @@
     width: 8%;
     align-items: center;
     font-size: 18px;
-    color: grey;
     max-width: 43px;
+}
+
+.comment-up-arrow-div {
+    cursor: pointer;
+}
+
+.comment-down-arrow-div {
+    cursor: pointer;
+}
+
+.upvoted {
+    color: #ff4500;
+}
+
+.downvoted {
+    color: #7193ff;
+}
+
+.notvoted {
+    color: grey;
 }
 
 .comment-card-rightside {

@@ -36,9 +36,16 @@ class Comment(db.Model):
             'created_at': self.created_at,
             'post': self.post.to_dict(),
             'commenter': self.commenter.to_dict(),
-            'votes': [vote.to_dict_comment() for vote in self.votes],
+            'votes': self.normalize_votes(),
             'voteTotal': self.vote_total()
         }
 
     def vote_total(self):
         return sum(vote.vote for vote in self.votes)
+
+    def normalize_votes(self):
+        NormalizedObj = {}
+        array = [vote.to_dict_comment() for vote in self.votes]
+        for obj in array:
+            NormalizedObj[obj.id] = obj
+        return NormalizedObj

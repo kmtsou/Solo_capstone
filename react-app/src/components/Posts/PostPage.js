@@ -24,14 +24,26 @@ function PostPage() {
 
     let localeDatetime = new Date(post.created_at).toLocaleString()
 
+    const handleVote = async (e) => {
+        e.preventDefault();
+        if (!user) alert('Please login to vote')
+
+    }
+    let voteStatusUp = 'notvoted'
+    let voteStatusDown = 'notvoted'
+
     return (
         <div className='post-page-content'>
             <div className='post-page-main'>
                 <div className='main-post-container'>
                     <div className='main-post-container-leftside'>
-                        <i className='fas fa-arrow-up'></i>
-                        <div>0</div>
-                        <i className='fas fa-arrow-down'></i>
+                        <div className={`post-up-arrow-div ${voteStatusUp}`}>
+                            <i className='fas fa-arrow-up'></i>
+                        </div>
+                        <div>{post.voteTotal}</div>
+                        <div className={`post-down-arrow-div ${voteStatusDown}`}>
+                            <i className='fas fa-arrow-down'></i>
+                        </div>
                     </div>
                     <div className='main-post-container-rightside'>
                         <div className='post-header-info'>

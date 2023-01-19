@@ -20,12 +20,32 @@ function CommentCard({ comment }) {
 
     let localDatetime = new Date(comment.created_at).toLocaleString()
 
+    let madeAVote = false;
+    for (let i = 0; i < comment.votes.length; i++) {
+        if (user && user.id === comment.votes[i].user_id) {
+            madeAVote = true;
+        }
+    }
+
+    const handleVote = async (e) => {
+        e.preventDefault();
+        if (!user) alert('Please login to vote')
+
+    }
+
+    let voteStatusUp = 'notvoted'
+    let voteStatusDown = 'notvoted'
+
     return (
         <div className='comment-card'>
             <div className='comment-card-leftside'>
-                <i className='fas fa-arrow-up'></i>
-                <div>0</div>
-                <i className='fas fa-arrow-down'></i>
+                <div className={`comment-up-arrow-div ${voteStatusUp}`}>
+                    <i className='fas fa-arrow-up'></i>
+                </div>
+                <div>{comment.voteTotal}</div>
+                <div className={`comment-down-arrow-div ${voteStatusDown}`}>
+                    <i className='fas fa-arrow-down'></i>
+                </div>
 
             </div>
             <div className='comment-card-rightside'>
