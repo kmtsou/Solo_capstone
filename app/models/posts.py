@@ -51,5 +51,5 @@ class Post(db.Model):
         NormalizedObj = {}
         array = [vote.to_dict_post() for vote in self.votes]
         for obj in array:
-            NormalizedObj[obj.id] = obj
+            NormalizedObj[obj['id']] = obj
         return NormalizedObj
