@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCommentThunk } from '../../store/comment';
+import { deleteCommentThunk, CreateVoteCommentThunk, RemoveVoteCommentThunk } from '../../store/comment';
 import EditCommentForm from './EditCommentForm';
 import './CommentCard.css'
 
@@ -21,29 +21,53 @@ function CommentCard({ comment }) {
     let localDatetime = new Date(comment.created_at).toLocaleString()
 
     let madeAVote = false;
-    for (let i = 0; i < comment.votes.length; i++) {
-        if (user && user.id === comment.votes[i].user_id) {
+    let typeOfVote;
+    let voteId;
+    let voteStatusUp = 'notvoted'
+    let voteStatusDown = 'notvoted'
+    let votesArray = Object.values(comment.votes)
+    for (let i = 0; i < votesArray.length; i++) {
+        if (user && user.id === votesArray[i].user_id) {
             madeAVote = true;
+            typeOfVote = votesArray[i].vote
+            voteId = votesArray[i].id
+            typeOfVote === 1 ? voteStatusUp = 'upvoted' : voteStatusDown = 'downvoted'
         }
     }
 
-    const handleVote = async (e) => {
+    const handleUpVote = async (e) => {
         e.preventDefault();
-        if (!user) alert('Please login to vote')
-
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVoteCommentThunk(voteId))
+        else {
+            dispatch(CreateVoteCommentThunk(comment.id, true))
+        }
+    }
+    const handleDownVote = async (e) => {
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVoteCommentThunk(voteId))
+        else {
+            dispatch(CreateVoteCommentThunk(comment.id, false))
+        }
     }
 
-    let voteStatusUp = 'notvoted'
-    let voteStatusDown = 'notvoted'
+
 
     return (
         <div className='comment-card'>
             <div className='comment-card-leftside'>
-                <div className={`comment-up-arrow-div ${voteStatusUp}`}>
+                <div className={`comment-up-arrow-div ${voteStatusUp}`} onClick={handleUpVote}>
                     <i className='fas fa-arrow-up'></i>
                 </div>
                 <div>{comment.voteTotal}</div>
-                <div className={`comment-down-arrow-div ${voteStatusDown}`}>
+                <div className={`comment-down-arrow-div ${voteStatusDown}`} onClick={handleDownVote}>
                     <i className='fas fa-arrow-down'></i>
                 </div>
 

@@ -16,6 +16,15 @@ class Vote(db.Model):
     comment = db.relationship("Comment", back_populates='votes')
 
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'vote': self.vote,
+            'user_id': self.user_id,
+            'post_id': self.post_id,
+            'comment_id': self.comment_id
+        }
+
     def to_dict_post(self):
         return {
             'id': self.id,

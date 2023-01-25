@@ -37,7 +37,7 @@ const deleteComment = (id) => {
     }
 }
 
-const CreateVoteComment = (payload) => {
+const CreateVoteComment = payload => {
     return {
         type: CREATE_VOTE_COMMENT,
         payload
@@ -119,17 +119,31 @@ export const deleteCommentThunk = (commentId) => async dispatch => {
     }
 }
 
-export const CreateVoteCommentThunk = (commentId, voteData) => async dispatch => {
-    const response = await fetch(`/api/votes/comment`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(voteData)
-    })
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(CreateVoteComment(data))
-        return data
+export const CreateVoteCommentThunk = (commentId, isUpVote) => async dispatch => {
+    if (isUpVote) {
+        const response = await fetch(`/api/votes/comment/${commentId}/upvote`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            // body: JSON.stringify(voteData)
+        })
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(CreateVoteComment(data))
+            return data
+        }
+    } else {
+        const response = await fetch(`/api/votes/comment/${commentId}/downvote`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            // body: JSON.stringify(voteData)
+        })
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(CreateVoteComment(data))
+            return data
+        }
     }
+
 }
 
 export const RemoveVoteCommentThunk = (id) => async dispatch => {
@@ -161,10 +175,13 @@ const commentReducer = (state = {}, action) => {
             delete deleteState[action.id]
             return deleteState;
         case CREATE_VOTE_COMMENT:
-            return {...state, [action.payload.comment_id]: {...state.action.payload.comment_id, votes: {...state.action.payload.comment_id.votes, [action.payload.id]: action.payload}}}
+            let addedVoteState = {...state, [action.payload.comment_id]: {...state[action.payload.comment_id], votes: {...state[action.payload.comment_id.votes], [action.payload.id]: action.payload}}}
+            addedVoteState[action.payload.comment_id]['voteTotal'] = addedVoteState[action.payload.comment_id]['voteTotal'] + action.payload.vote
+            return addedVoteState
         case REMOVE_VOTE_COMMENT:
             let deleteVoteState = {...state}
-            delete deleteVoteState[action.payload.comment_id]['votes'][action.payload.id]
+            delete deleteVoteState[action.payload.id]['votes'][action.payload.id]
+            deleteVoteState[action.payload.comment_id]['voteTotal'] = deleteVoteState[action.payload.comment_id]['voteTotal'] - action.payload.vote
             return deleteVoteState
         default:
             return state;

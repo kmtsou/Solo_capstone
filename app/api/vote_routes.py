@@ -17,35 +17,37 @@ def get_votes():
         votes = Vote.query.filter(json.postId == Vote.post_id).all()
         return {'votes': votes, 'post_id': json.postId}
 
-@vote_routes.route('/comment', methods=['POST'])
+@vote_routes.route('/comment/<int:id>/upvote', methods=['POST'])
 @login_required
-def create_comment_vote():
-    json = request.get_json()
-    if json.isUpVote:
-        vote = Vote(user_id=current_user.id, comment_id=json.commentId, vote=1)
-        db.session.add(vote)
-        db.session.commit()
-        return vote.to_dict_comment()
-    else:
-        vote = Vote(user_id=current_user.id, comment_id=json.commentId, vote=-1)
-        db.session.add(vote)
-        db.session.commit()
-        return vote.to_dict_comment()
+def create_comment_upvote(id):
+    vote = Vote(user_id=current_user.id, comment_id=id, vote=1)
+    db.session.add(vote)
+    db.session.commit()
+    return vote.to_dict_comment()
 
-@vote_routes.route('/post', methods=['POST'])
+@vote_routes.route('/comment/<int:id>/downvote', methods=['POST'])
 @login_required
-def create_post_vote():
-    json = request.get_json()
-    if json.isUpVote:
-        vote = Vote(user_id=current_user.id, post_id=json.postId, vote=1)
-        db.session.add(vote)
-        db.session.commit()
-        return vote.to_dict_post()
-    else:
-        vote = Vote(user_id=current_user.id, post_id=json.postId, vote=-1)
-        db.session.add(vote)
-        db.session.commit()
-        return vote.to_dict_post()
+def create_comment_downvote(id):
+    vote = Vote(user_id=current_user.id, comment_id=id, vote=-1)
+    db.session.add(vote)
+    db.session.commit()
+    return vote.to_dict_comment()
+
+@vote_routes.route('/post/<int:id>/upvote', methods=['POST'])
+@login_required
+def create_post_upvote(id):
+    vote = Vote(user_id=current_user.id, post_id=id, vote=1)
+    db.session.add(vote)
+    db.session.commit()
+    return vote.to_dict_post()
+
+@vote_routes.route('/post/<int:id>/downvote', methods=['POST'])
+@login_required
+def create_post_downvote(id):
+    vote = Vote(user_id=current_user.id, post_id=id, vote=-1)
+    db.session.add(vote)
+    db.session.commit()
+    return vote.to_dict_post()
 
 @vote_routes.route('/<int:id>', methods=['PUT'])
 @login_required
@@ -116,7 +118,7 @@ def delete_vote(id):
     if vote:
         db.session.delete(vote)
         db.session.commit()
-        return {'message': 'Vote has been deleted'}
+        return vote.to_dict()
     return {'message': 'Vote could not be found'}
 
 

@@ -47,5 +47,5 @@ class Comment(db.Model):
         NormalizedObj = {}
         array = [vote.to_dict_comment() for vote in self.votes]
         for obj in array:
-            NormalizedObj[obj.id] = obj
+            NormalizedObj[obj['id']] = obj
         return NormalizedObj

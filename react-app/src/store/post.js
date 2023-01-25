@@ -1,4 +1,4 @@
-const GET_POST = 'posts/getPost'
+// const GET_POST = 'posts/getPost'
 const GET_ALL_POSTS = 'posts/getAllPosts'
 const GET_COMMUNITY_POSTS = 'posts/getCommunityPosts'
 const CREATE_POST = 'posts/createPost'
@@ -7,16 +7,16 @@ const DELETE_POST = 'posts/deletePost'
 
 //votes
 const CREATE_VOTE_POST = 'posts/CreateVotePost'
-const EDIT_VOTE_POST = 'posts/EditVotePost'
+// const EDIT_VOTE_POST = 'posts/EditVotePost'
 const REMOVE_VOTE_POST = 'posts/RemoveVotePost'
 //
 
-const getPost = payload => {
-    return {
-        type: GET_POST,
-        payload
-    }
-}
+// const getPost = payload => {
+//     return {
+//         type: GET_POST,
+//         payload
+//     }
+// }
 
 const getAllPosts = payload => {
     return {
@@ -60,12 +60,12 @@ const CreateVotePost = (payload) => {
     }
 }
 
-const EditVotePost = (payload) => {
-    return {
-        type: EDIT_VOTE_POST,
-        payload
-    }
-}
+// const EditVotePost = (payload) => {
+//     return {
+//         type: EDIT_VOTE_POST,
+//         payload
+//     }
+// }
 
 const RemoveVotePost = (payload) => {
     return {
