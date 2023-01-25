@@ -15,7 +15,8 @@ Try it here: [linkit](https://linkit-kt.onrender.com/)
 - PostgreSQL
 
 ### Screenshots
-![linkitfirstscreenshot](https://user-images.githubusercontent.com/101781631/199640488-cf6cf0e1-6888-4400-a34e-3c177d1c2c78.png)
+![linkit2](https://user-images.githubusercontent.com/101781631/214504390-81040fab-b8ba-4579-893e-9d6a3b64b09a.png)
+
 
 
 ### Future Features
