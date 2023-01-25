@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from ..models import db, Comment
 from ..forms import CommentForm
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 comment_routes = Blueprint('comments', __name__, url_prefix='/api/comments')
 
@@ -33,6 +33,7 @@ def comment_on_comment(id):
 
 # edit comment
 @comment_routes.route('/<int:commentId>', methods=['PUT'])
+@login_required
 def edit_comment(commentId):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -46,6 +47,7 @@ def edit_comment(commentId):
 
 # delete comment
 @comment_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_comment(id):
     comment = Comment.query.get(id)
     if (comment):

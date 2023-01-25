@@ -17,6 +17,7 @@ class Post(db.Model):
     poster = db.relationship("User", back_populates='posts')
     community = db.relationship("Community", back_populates='posts')
     comments = db.relationship("Comment", back_populates='post', cascade='all, delete')
+    votes = db.relationship("Vote", back_populates='post', cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -38,5 +39,17 @@ class Post(db.Model):
             'created_at': self.created_at,
             'poster': self.poster.to_dict(),
             'community': self.community.to_dict(),
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'votes': self.normalize_votes(),
+            'voteTotal': self.vote_total()
         }
+
+    def vote_total(self):
+        return sum(vote.vote for vote in self.votes)
+
+    def normalize_votes(self):
+        NormalizedObj = {}
+        array = [vote.to_dict_post() for vote in self.votes]
+        for obj in array:
+            NormalizedObj[obj['id']] = obj
+        return NormalizedObj

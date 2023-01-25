@@ -1,16 +1,66 @@
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { CreateVotePostThunk, RemoveVotePostThunk } from '../../store/post';
 import './PostCard.css'
 
 function PostCard({ post }) {
     // const { communityId, communityName } = useParams();
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user)
 
     let localeDatetime = new Date(post.created_at).toLocaleString()
+
+    let madeAVote = false;
+    let typeOfVote;
+    let voteId;
+    let voteStatusUp = 'notvoted'
+    let voteStatusDown = 'notvoted'
+    let votesArray = Object.values(post.votes)
+    for (let i = 0; i < votesArray.length; i++) {
+        if (user && user.id === votesArray[i].user_id) {
+            madeAVote = true;
+            typeOfVote = votesArray[i].vote
+            voteId = votesArray[i].id
+            typeOfVote === 1 ? voteStatusUp = 'upvoted' : voteStatusDown = 'downvoted'
+        }
+    }
+
+    const handleUpVote = async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
+        else {
+            dispatch(CreateVotePostThunk(post.id, true))
+        }
+    }
+    const handleDownVote = async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
+        else {
+            dispatch(CreateVotePostThunk(post.id, false))
+        }
+    }
 
     return (
         <NavLink to={`/${post.community_id}/${post.community.name}/comments/${post.id}`}>
             <div className='post-card'>
                 <div className='post-card-leftside'>
-
+                    <div className={`post-up-arrow-div ${voteStatusUp}`} onClick={handleUpVote}>
+                        <i className='fas fa-arrow-up'></i>
+                    </div>
+                    <div>{post.voteTotal}</div>
+                    <div className={`post-down-arrow-div ${voteStatusDown}`} onClick={handleDownVote}>
+                        <i className='fas fa-arrow-down'></i>
+                    </div>
                 </div>
                 <div className='post-card-rightside'>
                     <div className='post-card-header'>

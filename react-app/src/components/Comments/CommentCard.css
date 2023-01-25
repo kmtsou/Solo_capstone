@@ -7,7 +7,8 @@
     color: black;
     word-wrap: break-word;
     overflow: visible;
-    /* display: flex; */
+    display: flex;
+    max-width: 640px;
 }
 
 /* .comment-card:hover {
@@ -21,9 +22,40 @@
     background-color: #d1d1d1;
 } */
 
+.comment-card-leftside {
+    display: flex;
+    flex-direction: column;
+    padding-top: 12px;
+    width: 8%;
+    align-items: center;
+    font-size: 18px;
+    max-width: 43px;
+}
+
+.comment-up-arrow-div {
+    cursor: pointer;
+}
+
+.comment-down-arrow-div {
+    cursor: pointer;
+}
+
+.upvoted {
+    color: #ff4500;
+}
+
+.downvoted {
+    color: #7193ff;
+}
+
+.notvoted {
+    color: grey;
+}
+
 .comment-card-rightside {
-    padding-left: 40px;
+    /* padding-left: 40px; */
     padding-right: 8px;
+    width: 92%;
 }
 
 .comment-card-header {

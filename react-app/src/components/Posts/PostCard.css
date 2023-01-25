@@ -7,23 +7,48 @@
     color: black;
     word-wrap: break-word;
     overflow: visible;
-    /* display: flex; */
+    display: flex;
+    max-width: 640px;
 }
 
 .post-card:hover {
     border: 1px #898989 solid;
 }
 
-/* .post-card-leftside {
+.post-card-leftside {
     display: flex;
-    justify-content: center;
-    width: 40px;
-    background-color: #d1d1d1;
-} */
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    width: 8%;
+    font-size: 18px;
+    z-index: 1;
+}
+
+.post-up-arrow-div {
+    cursor: pointer;
+}
+
+.post-down-arrow-div {
+    cursor: pointer;
+}
+
+.upvoted {
+    color: #ff4500;
+}
+
+.downvoted {
+    color: #7193ff;
+}
+
+.notvoted {
+    color: grey;
+}
 
 .post-card-rightside {
-    padding-left: 40px;
+    /* padding-left: 40px; */
     padding-right: 8px;
+    width: 92%;
 }
 
 .post-card-header {
