@@ -180,7 +180,7 @@ const commentReducer = (state = {}, action) => {
             return addedVoteState
         case REMOVE_VOTE_COMMENT:
             let deleteVoteState = {...state}
-            delete deleteVoteState[action.payload.id]['votes'][action.payload.id]
+            delete deleteVoteState[action.payload.comment_id]['votes'][action.payload.id]
             deleteVoteState[action.payload.comment_id]['voteTotal'] = deleteVoteState[action.payload.comment_id]['voteTotal'] - action.payload.vote
             return deleteVoteState
         default:

@@ -205,7 +205,7 @@ const postReducer = (state = {}, action) => {
             return addedVoteState
         case REMOVE_VOTE_POST:
             let deleteVoteState = {...state}
-            delete deleteVoteState[action.payload.id]['votes'][action.payload.id]
+            delete deleteVoteState[action.payload.post_id]['votes'][action.payload.id]
             deleteVoteState[action.payload.post_id]['voteTotal'] = deleteVoteState[action.payload.post_id]['voteTotal'] - action.payload.vote
             return deleteVoteState
         default:
