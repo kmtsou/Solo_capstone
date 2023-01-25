@@ -12,6 +12,7 @@ from .api.community_routes import community_routes
 from .api.post_routes import post_routes
 from .api.comment_routes import comment_routes
 from .api.search_routes import search_routes
+from .api.vote_routes import vote_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(community_routes)
 app.register_blueprint(post_routes)
 app.register_blueprint(comment_routes)
 app.register_blueprint(search_routes)
+app.register_blueprint(vote_routes)
 db.init_app(app)
 Migrate(app, db)
 

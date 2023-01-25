@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import { getAllPostsThunk } from '../../store/post';
+import { getAllPostsThunk, RemoveVotePostThunk, CreateVotePostThunk } from '../../store/post';
 import CommentList from '../Comments/CommentList';
 import CreateRootComment from '../Comments/CreateRootCommentForm';
 import SidebarExtraCard from '../Communities/SidebarExtraCard';
@@ -24,32 +24,83 @@ function PostPage() {
 
     let localeDatetime = new Date(post.created_at).toLocaleString()
 
+    let madeAVote = false;
+    let typeOfVote;
+    let voteId;
+    let voteStatusUp = 'notvoted'
+    let voteStatusDown = 'notvoted'
+    let votesArray = Object.values(post.votes)
+    for (let i = 0; i < votesArray.length; i++) {
+        if (user && user.id === votesArray[i].user_id) {
+            madeAVote = true;
+            typeOfVote = votesArray[i].vote
+            voteId = votesArray[i].id
+            typeOfVote === 1 ? voteStatusUp = 'upvoted' : voteStatusDown = 'downvoted'
+        }
+    }
+
+    const handleUpVote = async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
+        else {
+            dispatch(CreateVotePostThunk(post.id, true))
+        }
+    }
+    const handleDownVote = async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
+        else {
+            dispatch(CreateVotePostThunk(post.id, false))
+        }
+    }
+
     return (
         <div className='post-page-content'>
             <div className='post-page-main'>
                 <div className='main-post-container'>
-                    <div className='post-header-info'>
-                        <div className='main-post-header-community'>{`/${post.community.name}`}</div>
-                        <div className='main-post-header-separator'>•</div>
-                        <div className='main-post-header-text'>Posted by {post.poster.username}, {localeDatetime}</div>
+                    <div className='main-post-container-leftside'>
+                        <div className={`post-up-arrow-div ${voteStatusUp}`} onClick={handleUpVote}>
+                            <i className='fas fa-arrow-up'></i>
+                        </div>
+                        <div>{post.voteTotal}</div>
+                        <div className={`post-down-arrow-div ${voteStatusDown}`} onClick={handleDownVote}>
+                            <i className='fas fa-arrow-down'></i>
+                        </div>
                     </div>
-                    <h3 className='post-title-div'>
-                        {post.title}
-                    </h3>
-                    <div className='post-content-div'>
-                        {post.content}
-                    </div>
-                    <div className='post-footer-info'>
+                    <div className='main-post-container-rightside'>
+                        <div className='post-header-info'>
+                            <div className='main-post-header-community'>{`/${post.community.name}`}</div>
+                            <div className='main-post-header-separator'>•</div>
+                            <div className='main-post-header-text'>Posted by {post.poster.username}, {localeDatetime}</div>
+                        </div>
+                        <h3 className='post-title-div'>
+                            {post.title}
+                        </h3>
+                        <div className='post-content-div'>
+                            {post.content}
+                        </div>
+                        <div className='post-footer-info'>
 
-                        {user && user.id === post.poster_id && (
-                            <>
+                            {user && user.id === post.poster_id && (
+                                <>
 
-                                <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`} className='edit-post-link'>
-                                    <i className='far fa-edit' />
-                                    <div className='edit-post-link-text'>Edit</div>
-                                </NavLink>
-                            </>
-                        )}
+                                    <NavLink to={`/${communityId}/${communityName}/post/${postId}/edit`} className='edit-post-link'>
+                                        <i className='far fa-edit' />
+                                        <div className='edit-post-link-text'>Edit</div>
+                                    </NavLink>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className='comment-on-post-container'>

@@ -16,6 +16,7 @@ class Comment(db.Model):
 
     post = db.relationship("Post", back_populates='comments')
     commenter = db.relationship("User", back_populates='comments')
+    votes = db.relationship("Vote", back_populates='comment', cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -34,5 +35,17 @@ class Comment(db.Model):
             'content': self.content,
             'created_at': self.created_at,
             'post': self.post.to_dict(),
-            'commenter': self.commenter.to_dict()
+            'commenter': self.commenter.to_dict(),
+            'votes': self.normalize_votes(),
+            'voteTotal': self.vote_total()
         }
+
+    def vote_total(self):
+        return sum(vote.vote for vote in self.votes)
+
+    def normalize_votes(self):
+        NormalizedObj = {}
+        array = [vote.to_dict_comment() for vote in self.votes]
+        for obj in array:
+            NormalizedObj[obj['id']] = obj
+        return NormalizedObj

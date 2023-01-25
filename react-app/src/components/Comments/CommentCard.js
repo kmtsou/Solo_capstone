@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCommentThunk } from '../../store/comment';
+import { deleteCommentThunk, CreateVoteCommentThunk, RemoveVoteCommentThunk } from '../../store/comment';
 import EditCommentForm from './EditCommentForm';
 import './CommentCard.css'
 
@@ -20,9 +20,56 @@ function CommentCard({ comment }) {
 
     let localDatetime = new Date(comment.created_at).toLocaleString()
 
+    let madeAVote = false;
+    let typeOfVote;
+    let voteId;
+    let voteStatusUp = 'notvoted'
+    let voteStatusDown = 'notvoted'
+    let votesArray = Object.values(comment.votes)
+    for (let i = 0; i < votesArray.length; i++) {
+        if (user && user.id === votesArray[i].user_id) {
+            madeAVote = true;
+            typeOfVote = votesArray[i].vote
+            voteId = votesArray[i].id
+            typeOfVote === 1 ? voteStatusUp = 'upvoted' : voteStatusDown = 'downvoted'
+        }
+    }
+
+    const handleUpVote = async (e) => {
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVoteCommentThunk(voteId))
+        else {
+            dispatch(CreateVoteCommentThunk(comment.id, true))
+        }
+    }
+    const handleDownVote = async (e) => {
+        e.preventDefault();
+        if (!user) {
+            alert('Please login to vote')
+            return
+        }
+        if (madeAVote) dispatch(RemoveVoteCommentThunk(voteId))
+        else {
+            dispatch(CreateVoteCommentThunk(comment.id, false))
+        }
+    }
+
+
+
     return (
         <div className='comment-card'>
             <div className='comment-card-leftside'>
+                <div className={`comment-up-arrow-div ${voteStatusUp}`} onClick={handleUpVote}>
+                    <i className='fas fa-arrow-up'></i>
+                </div>
+                <div>{comment.voteTotal}</div>
+                <div className={`comment-down-arrow-div ${voteStatusDown}`} onClick={handleDownVote}>
+                    <i className='fas fa-arrow-down'></i>
+                </div>
 
             </div>
             <div className='comment-card-rightside'>
