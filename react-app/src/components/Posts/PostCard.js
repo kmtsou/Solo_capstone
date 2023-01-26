@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { CreateVotePostThunk, RemoveVotePostThunk } from '../../store/post';
@@ -7,6 +8,7 @@ function PostCard({ post }) {
     // const { communityId, communityName } = useParams();
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
+    const [isDisabled, setIsDisabled] = useState(false);
 
     let localeDatetime = new Date(post.created_at).toLocaleString()
 
@@ -32,10 +34,17 @@ function PostCard({ post }) {
             alert('Please login to vote')
             return
         }
-        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
-        else {
-            dispatch(CreateVotePostThunk(post.id, true))
+        if (isDisabled) {
+            return
         }
+        setIsDisabled(true)
+        if (madeAVote) {
+            await dispatch(RemoveVotePostThunk(voteId))
+        }
+        else {
+            await dispatch(CreateVotePostThunk(post.id, true))
+        }
+        setIsDisabled(false)
     }
     const handleDownVote = async (e) => {
         e.stopPropagation();
@@ -44,10 +53,17 @@ function PostCard({ post }) {
             alert('Please login to vote')
             return
         }
-        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
-        else {
-            dispatch(CreateVotePostThunk(post.id, false))
+        if (isDisabled) {
+            return
         }
+        setIsDisabled(true)
+        if (madeAVote) {
+            await dispatch(RemoveVotePostThunk(voteId))
+        }
+        else {
+            await dispatch(CreateVotePostThunk(post.id, false))
+        }
+        setIsDisabled(false)
     }
 
     return (

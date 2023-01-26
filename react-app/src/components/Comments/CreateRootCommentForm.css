@@ -33,3 +33,7 @@
 .create-comment-button:hover {
     background-color: #006cbd;
 }
+
+.comment-error-header {
+    padding-left: 43px;
+}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import { getAllPostsThunk, RemoveVotePostThunk, CreateVotePostThunk } from '../../store/post';
@@ -12,6 +12,7 @@ function PostPage() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.posts)
+    const [isDisabled, setIsDisabled] = useState(false);
     // const communities = useSelector(state => state.communities)
     const { communityId, communityName, postId } = useParams();
     const post = posts[postId]
@@ -46,10 +47,17 @@ function PostPage() {
             alert('Please login to vote')
             return
         }
-        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
-        else {
-            dispatch(CreateVotePostThunk(post.id, true))
+        if (isDisabled) {
+            return
         }
+        setIsDisabled(true)
+        if (madeAVote) {
+            await dispatch(RemoveVotePostThunk(voteId))
+        }
+        else {
+            await dispatch(CreateVotePostThunk(post.id, true))
+        }
+        setIsDisabled(false)
     }
     const handleDownVote = async (e) => {
         e.stopPropagation();
@@ -58,10 +66,17 @@ function PostPage() {
             alert('Please login to vote')
             return
         }
-        if (madeAVote) dispatch(RemoveVotePostThunk(voteId))
-        else {
-            dispatch(CreateVotePostThunk(post.id, false))
+        if (isDisabled) {
+            return
         }
+        setIsDisabled(true)
+        if (madeAVote) {
+            await dispatch(RemoveVotePostThunk(voteId))
+        }
+        else {
+            await dispatch(CreateVotePostThunk(post.id, false))
+        }
+        setIsDisabled(false)
     }
 
     return (
