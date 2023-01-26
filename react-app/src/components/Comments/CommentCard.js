@@ -8,6 +8,12 @@ function CommentCard({ comment }) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const [isEditting, setIsEditting] = useState(false);
+    // const [madeAVote, setMadeAVote] = useState(false);
+    // const [typeOfVote, setTypeOfVote] = useState();
+    // const [voteId, setVoteId] = useState();
+    // const [voteStatusUp, setVoteStatusUp] = useState('notvoted');
+    // const [voteStatusDown, setVoteStatusDown] = useState('notvoted');
+    const [isDisabled, setIsDisabled] = useState(false);
 
     const handleDelete = async (e) => {
         e.preventDefault();
@@ -41,10 +47,17 @@ function CommentCard({ comment }) {
             alert('Please login to vote')
             return
         }
-        if (madeAVote) dispatch(RemoveVoteCommentThunk(voteId))
-        else {
-            dispatch(CreateVoteCommentThunk(comment.id, true))
+        if (isDisabled) {
+            return
         }
+        setIsDisabled(true)
+        if (madeAVote) {
+            await dispatch(RemoveVoteCommentThunk(voteId))
+        }
+        else {
+            await dispatch(CreateVoteCommentThunk(comment.id, true))
+        }
+        setIsDisabled(false)
     }
     const handleDownVote = async (e) => {
         e.preventDefault();
@@ -52,10 +65,17 @@ function CommentCard({ comment }) {
             alert('Please login to vote')
             return
         }
-        if (madeAVote) dispatch(RemoveVoteCommentThunk(voteId))
-        else {
-            dispatch(CreateVoteCommentThunk(comment.id, false))
+        if (isDisabled) {
+            return
         }
+        setIsDisabled(true)
+        if (madeAVote) {
+            await dispatch(RemoveVoteCommentThunk(voteId))
+        }
+        else {
+            await dispatch(CreateVoteCommentThunk(comment.id, false))
+        }
+        setIsDisabled(false)
     }
 
 
