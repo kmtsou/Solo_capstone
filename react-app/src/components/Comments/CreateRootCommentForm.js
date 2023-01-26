@@ -41,7 +41,7 @@ function CreateRootComment() {
         <div className="create-comment-container">
             <form onSubmit={handleSubmit} className='create-comment-form'>
                 {hasSubmitted && validationErrors.length > 0 && (
-                    <div>
+                    <div className="comment-error-header">
                         The following errors were found:
                         <ul>
                             {validationErrors.map((error) => (

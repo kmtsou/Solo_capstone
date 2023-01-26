@@ -18,11 +18,18 @@ function CommentList() {
 
     if (!commentsArr) return null
 
+    let isEmptyArray = commentsArr.length === 0;
+
     return (
         <>
         {commentsArr.map(comment => (
             <CommentCard comment={comment} key={`comment ${comment.id}`}/>
         ))}
+        {isEmptyArray && (
+            <div className="no-comments-container">
+                <div className="no-comments-text">No comments yet</div>
+            </div>
+        )}
         </>
     )
 }
